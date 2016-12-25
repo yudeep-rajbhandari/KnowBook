@@ -35,7 +35,7 @@ router.post('/savedata', function (req, res, next) {
 
 router.get('/faculty', function (req, res, next) {
 
-    model.find().distinct('faculty', function (err, data) {
+    model.find().distinct('faculty','subject', function (err, data) {
 
         if (err) {
             throw (err);

@@ -10,13 +10,13 @@ router.get('/', function(req, res, next) {
 });
 
 var book1={
-    "bookName":"new book",
+    "bookName":"Control System And Instrumentation",
     "booktype":"refernce",
-    "writer":"new",
+    "writer":"new writer",
     "publication":"new publication",
     "price":"Nrs.500",
     "availability":"N/A",
-    "rackNumber":"23"
+    "rackNumber":"N/A"
 }
 
 router.post('/savedata',function(req,res,next){

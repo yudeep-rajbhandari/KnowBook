@@ -1,0 +1,73 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans:300' rel='stylesheet' type='text/css'>
+    <style>
+        input.ng-invalid.ng-dirty.ng-touched{
+            border:1px solid red;
+            color: #F97C7C;
+        }
+        button.ng-disabled{
+            background-color:#9CBF9C ;
+        }
+        label.label-group>span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form  name="frm ">
+
+ 
+    
+    <h1>Add new Subject</h1>
+
+    <fieldset>
+        <label class="label-group">Subject Name
+            <input type="text" name="pname" placeholder="Subject name" ng-model="addsubject.SubjectName" required>
+            <span ng-show="frm.pname.$touched && frm.pname.$invalid">Subjectname is required!!</span>
+            <span ng-show="frm.pname.$touched && frm.pname.$error.required"></span>
+        </label>
+
+       
+
+
+        <label class="label-group">Subject Code
+            <input type="text" name="lat" step="any" ng-model="addsubject.subjectcode" required>
+            <span ng-show="frm.lat.$touched && frm.lat.$invalid">Subject Code is required!!</span>
+            <span ng-show="frm.lat.$touched && frm.lat.$error.required"></span>
+        </label>
+
+
+        <label class="label-group">Credit
+            <input type="number" name="long" step="any" ng-model="addsubject.Credit" required>
+            <span ng-show="frm.long.$touched && frm.long.$invalid">Credit is required!!</span>
+            <span ng-show="frm.long.$touched && frm.long.$error.required"></span>
+        </label>
+
+        <label class="label-group">faculty:
+            <select ng-model="addsubject.Faculties" placeholder="faculty" ng-options="faculty for faculty  in faculties"></select>
+        </label>
+
+        <label class="label-group">semester:
+            <select ng-model="addsubject.Semester" placeholder="semester" ng-options="semester for semester in semesters"></select>
+        </label>
+
+
+       
+
+
+
+
+    </fieldset>
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addSubject()">Save</buttonclass>
+</form>
+
+</body>

@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var books=require('./routes/books');
 var information=require('./routes/information');
+var subject=require('./routes/subject');
 
 var app = express();
 require('./config/mongoFile')(app);
@@ -29,6 +30,11 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/books', books);
 app.use('/information',information);
+app.use('/subject',subject);
+
+app.get('*', function(req, res) {
+  res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

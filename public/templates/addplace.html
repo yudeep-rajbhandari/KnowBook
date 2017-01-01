@@ -1,0 +1,111 @@
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans:300' rel='stylesheet' type='text/css'>
+    <style>
+        input.ng-invalid.ng-dirty.ng-touched{
+            border:1px solid red;
+            color: #F97C7C;
+        }
+        button.ng-disabled{
+            background-color:#9CBF9C ;
+        }
+        label.label-group>span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form  name="frm ">
+
+    
+    <h1>Add new Books</h1>
+
+    <fieldset>
+        <label class="label-group">Book Name
+            <input type="text" name="pname" placeholder="book name" ng-model="addplace.placeName" required>
+            <span ng-show="frm.pname.$touched && frm.pname.$invalid">Placename is required!!</span>
+            <span ng-show="frm.pname.$touched && frm.pname.$error.required"></span>
+        </label>
+
+        <label class="label-group">Book type
+            <input type="text" placeholder="Book type" ng-model="addplace.placeDescription" required>
+            <span ng-show="frm.desp.$touched && frm.desp.$invalid">Description is required!!</span>
+            <span ng-show="frm.desp.$touched && frm.desp.$error.required"></span>
+        </label>
+
+
+        <label class="label-group">Writer
+            <input type="text" name="lat" step="any" ng-model="addplace.latitude" required>
+            <span ng-show="frm.lat.$touched && frm.lat.$invalid">Lattitude is required!!</span>
+            <span ng-show="frm.lat.$touched && frm.lat.$error.required"></span>
+        </label>
+
+
+        <label class="label-group">publication
+            <input type="text" name="long" step="any" ng-model="addplace.longitude" required>
+            <span ng-show="frm.long.$touched && frm.long.$invalid">Longitude is required!!</span>
+            <span ng-show="frm.long.$touched && frm.long.$error.required"></span>
+        </label>
+
+
+        <label class="label-group">price
+            <input type="text" name="address" ng-model="addplace.placeAddress" required>
+            <span ng-show="frm.address.$touched && frm.address.$invalid">Address is required!!</span>
+            <span ng-show="frm.address.$touched && frm.address.$error.required"></span>
+        </label>
+
+
+        <label class="label-group">availability
+            <input type="text" name="image" ng-model="addplace.imageLink" required>
+            <span ng-show="frm.address.$touched && frm.address.$invalid">Image link is required!!</span>
+            <span ng-show="frm.address.$touched && frm.address.$error.required"></span>
+        </label>
+
+ <label class="label-group">rackNumber
+            <input type="text" name="image" ng-model="addplace.imageLink" required>
+            <span ng-show="frm.address.$touched && frm.address.$invalid">Image link is required!!</span>
+            <span ng-show="frm.address.$touched && frm.address.$error.required"></span>
+        </label>
+
+        <label class="label-group">faculty:
+            <select ng-model="addplace.district" placeholder="district" ng-options="faculty for faculty  in faculties"></select>
+        </label>
+
+        <label class="label-group">semester:
+            <select ng-model="addplace.categories" placeholder="category" ng-options="semester for semester in semesters"></select>
+        </label>
+        <label class="label-group">Drive way
+            <textarea name="drive1" placeholder="How to get there?" ng-model="addplace.driveway" required>
+            </textarea>
+            <span ng-show="frm.drive1.$touched && frm.drive1.$invalid">Description is required!!</span>
+            <span ng-show="frm.drive1.$touched && frm.drive1.$error.required"></span>
+        </label>
+        <label class="label-group">Expense
+            <textarea name="expense" placeholder="Minimum expense" ng-model="addplace.expense" required>
+            </textarea>
+            <span ng-show="frm.expense.$touched && frm.expense.$invalid">Description is required!!</span>
+            <span ng-show="frm.expense.$touched && frm.expense.$error.required"></span>
+        </label>
+        <label class="label-group">Nearby Hotels
+            <textarea name="hotel" placeholder="Minimum expense" ng-model="addplace.nearbyHotels" required>
+            </textarea>
+            <span ng-show="frm.hotel.$touched && frm.hotel.$invalid">Description is required!!</span>
+            <span ng-show="frm.hotel.$touched && frm.hotel.$error.required"></span>
+        </label>
+
+
+
+
+    </fieldset>
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addPlace()">Save</buttonclass>
+</form>
+
+</body>

@@ -13,8 +13,8 @@ var information1 = {
 
     "faculty": "CE",
     "semester": "1st",
-    "subject": "COMP201",
-    "bookid": "585e08f5098886d618963221"
+    "subject": "MATH101",
+    "bookid": "58606efe415ac265101a0f3a"
 }
 
 router.post('/savedata', function (req, res, next) {

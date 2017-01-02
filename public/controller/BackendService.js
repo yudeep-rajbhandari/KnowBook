@@ -7,6 +7,7 @@ var service=angular.module('BackendService',[]);
 service.factory('service',['$http',function($http) {
 
     var saveHttp = function (data, url, callback) {
+        
         $http({
             method: 'POST',
             url: url,
@@ -21,10 +22,11 @@ service.factory('service',['$http',function($http) {
             // or server returns response with an error status.
         });
     }
-    var getHttp = function ( url, callback) {
+    var getHttp = function ( data,url, callback) {
         $http({
             method: 'GET',
-            url: url
+            url: url,
+            params:data
 
         }).then(function successCallback(response) {
             callback(false, response);
@@ -72,8 +74,8 @@ service.factory('service',['$http',function($http) {
         save:function(data,url,callback){
             saveHttp(data,url,callback);
         },
-        get:function(url,callback){
-            getHttp(url,callback)
+        get:function(data,url,callback){
+            getHttp(data,url,callback)
         },
         delete:function(data,url,callback){
             deleteHttp(data,url,callback)

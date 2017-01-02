@@ -11,8 +11,10 @@ var booksSchema = new Schema({
     "publication":{"type":String},
     "price":{"type":String},
     "availability":{"type":String},
-    "rackNumber":{"type":String}
-
+    "rackNumber":{"type":String},
+    "Faculties":{"type":String},
+     "Semester":{"type":String},
+     "Subject":{"type":String}
 
 
 });

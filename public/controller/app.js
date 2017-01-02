@@ -39,10 +39,10 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", function ($
                 roles: []
             }
         })
-        .state('home.addplace', {
+        .state('home.addbook', {
 
-            url: '/addplace',
-            templateUrl: 'templates/addplace.html',
+            url: '/addbook',
+            templateUrl: 'templates/addbook.html',
             controller: "booksController",
             data: {
                 roles: []
@@ -82,7 +82,7 @@ app.controller('signUpController', ['$scope', '$http', 'toaster', '$state', 'pri
                             $rootScope.userData=userData;
 
 
-                            $state.go('home.addplace');
+                            $state.go('home.addbook');
                         }
                         else {
 
@@ -116,11 +116,40 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
         $scope.addsubject = {};
         $scope.faculties=["CE","CS"];
         $scope.semesters=[1,2,3,4,5,6,7,8];
+        $scope.addbooks={};
+
+       $scope.$watch("[addbooks.Faculties,addbooks.Semester]",function(newValue,oldValue,scope){
+console.log("<<<<<<");
+           if (($scope.addbooks.Faculties) && ($scope.addbooks.Semester)){
+               console.log("<<<<<<");
+            service.get({Faculty:$scope.addbooks.Faculties,Semester:$scope.addbooks.Semester},"/subject/getsubject",
+            function(err,data){
+                        if (err) {
+                        throw (err); 
+
+                    }
+                    if (!err) {
+                        toaster.pop("success", "added successfully");
+                        //console.log(data.data[0].subjectcode);
+                       $scope.subjects=data.data.data;
+                       console.log($scope.subjects);
+                       
+
+                    }
+                    else {
+                        console.log(response);
+                    }
+
+                })
+                          
+           }
+       })
         
 
          $scope.addSubject = function () {
+             console.log($scope.addsubject);
            
-            service.save({addSubject: $scope.addsuject}, "/subject/savedata",
+            service.save({addSubject: $scope.addsubject}, "/subject/savedata",
                 function (err, response) {
 
 
@@ -130,7 +159,7 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
                     }
                     if (!err) {
                         toaster.pop("success", "added successfully");
-                        $state.go('home.addplace');
+                        $state.go('home.addbook');
 
                     }
                     else {

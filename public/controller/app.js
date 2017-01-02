@@ -67,7 +67,18 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", function ($
                 roles: ['user']
             }
         })
-        
+
+        .state('home.view', {
+
+            url: '/view',
+            templateUrl: 'templates/view.html',
+            controller: "booksController",
+            data: {
+                roles: ['user']
+            }
+        })
+
+
 
 }])
 
@@ -202,5 +213,22 @@ console.log("<<<<<<");
                 }
             )
         }
+
+        $scope.Requests = function () {
+            service.get(null,'/books/Requests', function (err, response) {
+                if (err) {
+                    throw(err)
+
+                }
+                if (!err) {
+                    console.log("<<<<<<")
+                    $scope.seeRequests = response.data.data;
+                   console.log('$scope.seeRequests');
+                }
+            })
+        }
+
+
+
 }
 ])

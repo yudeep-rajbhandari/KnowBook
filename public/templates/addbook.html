@@ -83,8 +83,9 @@
         <label class="label-group">semester:
             <select ng-model="addbooks.Semester" placeholder="category" ng-options="semester for semester in semesters"></select>
         </label>
+       {{addbooks.Subjectid._id}}
        <label class="label-group">subject:
-            <select ng-model="addbooks.Subject" placeholder="category" ng-options="subject as subject.subjectcode for subject in subjects"></select>
+            <select ng-model="addbooks.Subjectid" placeholder="category" ng-options="subject as subject.subjectcode for subject in subjects"></select>
         </label>
     </fieldset>
     <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addBooks()">Save</buttonclass>

@@ -193,7 +193,7 @@ console.log("<<<<<<");
 
         $scope.addBooks = function () {
 
-
+                console.log($scope.addbooks.Subjectid)
             service.save({addBook: $scope.addbooks}, "/books/savedata",
                 function (err, response) {
 
@@ -223,10 +223,12 @@ console.log("<<<<<<");
                 if (!err) {
                     console.log("<<<<<<")
                     $scope.seeRequests = response.data.data;
-                   console.log('$scope.seeRequests');
+                   console.log($scope.seeRequests);
                 }
             })
         }
+
+
 
 
 

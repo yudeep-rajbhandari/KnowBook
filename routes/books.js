@@ -49,7 +49,9 @@ router.post('/savedata',function(req,res,next){
 router.get('/Requests', function (req, res, next) {
 
     console.log("<<<<<<");
-    model.find({}, function (err, data) {
+    model.find()
+    .populate('Subjectid')
+    .exec(function (err, data) {
 
         if (err) {
             throw (err);

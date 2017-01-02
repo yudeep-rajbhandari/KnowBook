@@ -25,16 +25,7 @@
 <body>
 <form  name="frm ">
 
-    "bookName":{"type":String},
-    "booktype":{"type":String},
-    "writer":{"type":String},
-    "publication":{"type":String},
-    "price":{"type":String},
-    "availability":{"type":String},
-    "rackNumber":{"type":String},
-    "Faculties":{"type":String},
-     "Semester":{"type":String},
-     "Subject":{"type":String}
+
 
     <h1>Add new Books</h1>
 
@@ -96,7 +87,7 @@
             <select ng-model="addbooks.Subject" placeholder="category" ng-options="subject as subject.subjectcode for subject in subjects"></select>
         </label>
     </fieldset>
-    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addPlace()">Save</buttonclass>
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addBooks()">Save</buttonclass>
 </form>
 
 </body>

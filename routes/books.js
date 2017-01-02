@@ -21,7 +21,17 @@ var book1={
 
 router.post('/savedata',function(req,res,next){
 
-        var addnew= new model(book1);
+    var addnewdata=req.body.addBook;
+
+
+
+
+    var addthis = new model(addnewdata);
+
+
+
+
+        var addnew= new model(addnewdata);
             addnew.save(function(err,data){
                      if (err) {
             throw (err);

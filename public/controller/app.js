@@ -45,7 +45,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", function ($
             templateUrl: 'templates/addbook.html',
             controller: "booksController",
             data: {
-                roles: []
+                roles: ['user']
             }
         })
         .state('home.addsubject', {
@@ -54,7 +54,17 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", function ($
             templateUrl: 'templates/addsubject.html',
             controller: "booksController",
             data: {
-                roles: []
+                roles: ['user']
+            }
+        })
+
+        .state('home.welcome', {
+
+            url: '/welcome',
+            templateUrl: 'templates/welcome.html',
+            controller: "booksController",
+            data: {
+                roles: ['user']
             }
         })
         
@@ -82,7 +92,7 @@ app.controller('signUpController', ['$scope', '$http', 'toaster', '$state', 'pri
                             $rootScope.userData=userData;
 
 
-                            $state.go('home.addbook');
+                            $state.go('home.welcome');
                         }
                         else {
 
@@ -168,5 +178,29 @@ console.log("<<<<<<");
                 }
             )
         }
-    }
+
+
+        $scope.addBooks = function () {
+
+
+            service.save({addBook: $scope.addbooks}, "/books/savedata",
+                function (err, response) {
+
+
+                    if (err) {
+                        throw (err);
+
+                    }
+                    if (!err) {
+                        toaster.pop("success", "added successfully");
+                        $state.go('home.welcome');
+
+                    }
+                    else {
+                        console.log(response);
+                    }
+                }
+            )
+        }
+}
 ])

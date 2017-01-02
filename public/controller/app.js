@@ -150,7 +150,7 @@ console.log("<<<<<<");
 
                     }
                     if (!err) {
-                        toaster.pop("success", "added successfully");
+
                         //console.log(data.data[0].subjectcode);
                        $scope.subjects=data.data.data;
                        console.log($scope.subjects);

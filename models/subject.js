@@ -7,7 +7,9 @@ var subjectSchema = new Schema({
 "SubjectName":{"type":String},
 "Credit":{"type":String},
 "Faculties":{"type":String},
-"Semester":{"type":String}
+"Semester":{"type":String},
+"picture": {"type": Schema.Types.Mixed, required: true},
+    "morePictures": Schema.Types.Mixed
  
 });
 

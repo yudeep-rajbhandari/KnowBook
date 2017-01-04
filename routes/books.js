@@ -46,10 +46,10 @@ router.post('/savedata',function(req,res,next){
         })
 
 
-router.get('/Requests', function (req, res, next) {
-
-    console.log("<<<<<<");
-    model.find()
+router.get('/Requests/:subjectid', function (req, res, next) {
+   // console.log(req.params.subjectid);
+    console.log("hello");
+    model.find({Subjectid:req.params.subjectid})
     .populate('Subjectid')
     .exec(function (err, data) {
 
@@ -64,6 +64,18 @@ router.get('/Requests', function (req, res, next) {
             next(err);
         }
     })
+})
+
+router.post('/delete',function(req,res,next){
+console.log(req.body.deleteItem);
+    model.remove({Subjectid:req.body.deleteItem},function(err,data){
+        if(err){
+            throw(err);
+        }
+         if(!err){
+        res.status(200).json({message:'successfully deleted'})
+    }
+})
 })
 
 

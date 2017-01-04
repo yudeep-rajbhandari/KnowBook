@@ -1,6 +1,6 @@
 
 
-var app = angular.module('knowbooks', ['ui.router', 'BackendService', 'toaster', 'service.authorization']);
+var app = angular.module('knowbooks', ['ui.router', 'BackendService', 'toaster', 'service.authorization', 'angular-filepicker']);
 
 app.run(function (principal, $rootScope) {
     principal.identity().then(function (data) {
@@ -11,10 +11,11 @@ app.run(function (principal, $rootScope) {
     })
 })
 
-app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", function ($stateProvider, $urlRouterProvider, $httpProvider) {
+app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider","filepickerProvider", function ($stateProvider, $urlRouterProvider, $httpProvider,filepickerProvider) {
 
 
     $urlRouterProvider.otherwise('/home/login');
+
     $stateProvider
 
         // HOME STATES AND NESTED VIEWS =======================================
@@ -78,7 +79,17 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", function ($
             }
         })
 
+.state('home.booksdetails', {
 
+            url: '/booksdetails/:subjectid',
+            templateUrl: 'templates/booksdetails.html',
+            controller: "booksController",
+            data: {
+                roles: ['user']
+            }
+        })
+
+ filepickerProvider.setKey('Anq0xcldQW6yRUWW5v1DVz');
 
 }])
 
@@ -132,12 +143,45 @@ app.controller('signUpController', ['$scope', '$http', 'toaster', '$state', 'pri
         }]
 )
 
-app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'principal', 'service', '$rootScope',
-    function ($scope, $http, toaster, $state, principal, service, $rootScope, directive) {
+app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'principal', 'service', '$rootScope','$stateParams','filepickerService',
+    function ($scope, $http, toaster, $state, principal, service, $rootScope, $stateParams,filepickerService) {
         $scope.addsubject = {};
         $scope.faculties=["CE","CS"];
         $scope.semesters=[1,2,3,4,5,6,7,8];
         $scope.addbooks={};
+
+         $scope.upload = function(){
+        filepickerService.pick(
+            {
+                mimetype: 'image/*',
+                language: 'en',
+                services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE','IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                openTo: 'IMAGE_SEARCH'
+            },
+            function(Blob){
+                console.log(JSON.stringify(Blob));
+                $scope.addsubject.picture = Blob;
+                $scope.$apply();
+            }
+        );
+    };
+    //Multiple files upload set to 3 as max number
+    $scope.uploadMultiple = function(){
+        filepickerService.pickMultiple(
+            {
+                mimetype: 'image/*',
+                language: 'en',
+                maxFiles: 3, //pickMultiple has one more option
+                services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE','IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+                openTo: 'IMAGE_SEARCH'
+            },
+      function(Blob){
+                console.log(JSON.stringify(Blob));
+                $scope.addsubject.morePictures = Blob;
+                $scope.$apply();
+            }
+        );
+    };  
 
        $scope.$watch("[addbooks.Faculties,addbooks.Semester]",function(newValue,oldValue,scope){
 console.log("<<<<<<");
@@ -165,6 +209,21 @@ console.log("<<<<<<");
                           
            }
        })
+
+       if ($stateParams.subjectid) {
+            console.log($stateParams.subjectid);
+            service.get(null,'/books/Requests/' + $stateParams.subjectid, function (err, response) {
+                if (err) {
+                    throw(err)
+                }
+                if (!err) {
+                    $scope.seeRequests = response.data.data;
+                    console.log($scope.seeRequests);
+                    $scope.deleteid=$stateParams.subjectid;
+
+                }
+            })
+        }
         
 
          $scope.addSubject = function () {
@@ -190,6 +249,18 @@ console.log("<<<<<<");
             )
         }
 
+$scope.deleteit=function(){
+service.delete({deleteItem:$scope.deleteid},'/books/delete',function(err,response){
+console.log($scope.deleteid);
+    if(err){
+        throw(err);
+    }
+
+    if(!err){
+        toaster.pop("succes","successfully deleted" );
+    }
+})
+}
 
         $scope.addBooks = function () {
 

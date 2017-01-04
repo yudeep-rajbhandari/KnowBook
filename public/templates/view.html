@@ -6,6 +6,34 @@
 </head>
 <body>
 <button ng-click="Requests()">show books</button>
+<label class="label-group">faculty:
+            <select ng-model="addbooks.Faculties" placeholder="district" ng-options="faculty for faculty  in faculties"></select>
+        </label>
+
+        <label class="label-group">semester:
+            <select ng-model="addbooks.Semester" placeholder="category" ng-options="semester for semester in semesters"></select>
+        </label>
+
+        <div ng-repeat="subject in subjects">
+
+<a ui-sref="home.booksdetails({subjectid:subject._id})"><h3>Subject Name:{{subject.SubjectName}}</h3></a>           
+
+<br>
+Subject code:{{subject.subjectcode}}
+<br>
+Credit      :{{subject.Credit}}
+<br>
+<div class="thumbnail">
+      <img ng-src="{{subject.picture.url  }}" />
+ 
+ <div class="text-right"><a ng-href="/#/detail/{{subject._id}}" class="btn btn-danger" role="button">View</a> </div>
+      </div>
+
+<br>
+
+       
+        </div>
+
 <div ng-repeat="seerequest in seeRequests">
 
 

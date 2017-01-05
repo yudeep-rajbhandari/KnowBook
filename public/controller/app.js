@@ -89,6 +89,16 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider","filepickerP
             }
         })
 
+        .state('home.routine', {
+
+            url: '/routine',
+            templateUrl: 'templates/routine.html',
+            controller: "booksController",
+            data: {
+                roles: ['user']
+            }
+        })
+
  filepickerProvider.setKey('Anq0xcldQW6yRUWW5v1DVz');
 
 }])
@@ -149,18 +159,38 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
         $scope.faculties=["CE","CS"];
         $scope.semesters=[1,2,3,4,5,6,7,8];
         $scope.addbooks={};
-
+        $scope.booktypes=["text","reference","other"];
+        $scope.availabilities=["yes","no"];
+        $scope.addroutine={};
+        $scope.times=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+        $scope.days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"]
          $scope.upload = function(){
         filepickerService.pick(
             {
-                mimetype: 'image/*',
+               mimetype: 'text/*',
                 language: 'en',
-                services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE','IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
-                openTo: 'IMAGE_SEARCH'
+                services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
+                //openTo: 'IMAGE_SEARCH'
             },
             function(Blob){
                 console.log(JSON.stringify(Blob));
                 $scope.addsubject.picture = Blob;
+                $scope.$apply();
+            }
+        );
+    };
+
+     $scope.upload1 = function(){
+        filepickerService.pick(
+            {
+                extension: 'pdf',
+                language: 'en',
+                services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
+                //openTo: 'IMAGE_SEARCH'
+            },
+            function(Blob){
+                console.log(JSON.stringify(Blob));
+                $scope.addbooks.pdf = Blob;
                 $scope.$apply();
             }
         );
@@ -296,6 +326,21 @@ console.log($scope.deleteid);
                     $scope.seeRequests = response.data.data;
                    console.log($scope.seeRequests);
                 }
+            })
+        }
+
+        
+        $scope.saveroutine=function(){
+
+            service.save({routine:$scope.addroutine},'/routine/addroutine',function(err,data){
+
+                if(err){
+                    throw (err)
+                }
+if(!err){
+    console.log($scope.addroutine);
+    toaster.pop("success",+data.message);
+}
             })
         }
 

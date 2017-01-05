@@ -36,10 +36,9 @@
             <span ng-show="frm.pname.$touched && frm.pname.$error.required"></span>
         </label>
 
-        <label class="label-group">Book type
-            <input type="text" placeholder="Book type" ng-model="addbooks.booktype" required>
-            <span ng-show="frm.desp.$touched && frm.desp.$invalid">Description is required!!</span>
-            <span ng-show="frm.desp.$touched && frm.desp.$error.required"></span>
+
+        <label class="label-group">Book type:
+            <select ng-model="addbooks.booktype" placeholder="district" ng-options="booktype for booktype  in booktypes"></select>
         </label>
 
 
@@ -64,10 +63,8 @@
         </label>
 
 
-        <label class="label-group">availability
-            <input type="text" name="image" ng-model="addbooks.availability" required>
-            <span ng-show="frm.address.$touched && frm.address.$invalid">Image link is required!!</span>
-            <span ng-show="frm.address.$touched && frm.address.$error.required"></span>
+       <label class="label-group">availability:
+            <select ng-model="addbooks.availability" placeholder="district" ng-options="availability for availability  in availabilities"></select>
         </label>
 
  <label class="label-group">rackNumber
@@ -88,6 +85,22 @@
             <select ng-model="addbooks.Subjectid" placeholder="category" ng-options="subject as subject.subjectcode for subject in subjects"></select>
         </label>
     </fieldset>
+
+    <div class="form-group">
+                    <label for="picture">Upload pdf</label>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-default" ng-click="upload1()">
+                            Upload <span class="caret"></span>
+                        </button>
+                        <div style="margin-top:10px;">
+                            <!-- Show the thumbnail only when the picture is uploaded -->
+                            <a href="{{addbooks.pdf.url}}" class="thumbnail" ng-if="addbooks.pdf">
+                            <!-- the picture is rendered with width: 500 and sharpened -->
+                            <img ng-src="{{addbooks.pdf.url | fpConvert: {filter:'sharpen'} }}">
+                            </a>
+                        </div>                  
+                    </div>
+                </div>
 
     
     <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addBooks()">Save</buttonclass>

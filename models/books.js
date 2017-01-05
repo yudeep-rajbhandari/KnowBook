@@ -12,7 +12,9 @@ var booksSchema = new Schema({
     "price":{"type":String},
     "availability":{"type":String},
     "rackNumber":{"type":String},
-     "Subjectid":{"type": Schema.Types.ObjectId,required:true, ref: 'subject'}
+     "Subjectid":{"type": Schema.Types.ObjectId,required:true, ref: 'subject'},
+     "pdf": {"type": Schema.Types.Mixed, required: true},
+    "morePdfs": Schema.Types.Mixed
 
 
 });

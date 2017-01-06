@@ -12,16 +12,12 @@
     
       
         <label class="label-group">starting time:
-             
-  <input type="time" ng-model="addroutine.startingTime">
-     <!--       <select ng-model="addroutine.startingTime" placeholder="category" ng-options="time for time in times"></select>
-        </label> -->
+            <select ng-model="addroutine.startingTime" placeholder="category" ng-options="time for time in times"></select>
+        </label>
 
     <label class="label-group">Ending time:
-           
-           <input type="time" ng-model="addroutine.endingTime">
-        <!--    <select ng-model="addroutine.endingTime" placeholder="category" ng-options="time for time in times"></select>
-        </label>-->
+            <select ng-model="addroutine.endingTime" placeholder="category" ng-options="time for time in times"></select>
+        </label>
        
  <label class="label-group">subject:
             <select ng-model="addroutine.Subjectid" placeholder="category" ng-options="subject as subject.subjectcode for subject in subjects"></select>

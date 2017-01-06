@@ -339,7 +339,8 @@ console.log($scope.deleteid);
                 }
 if(!err){
     console.log($scope.addroutine);
-    toaster.pop("success",+data.message);
+    toaster.pop("success","added successfully");
+    $state.go("home.routine");
 }
             })
         }

@@ -5,10 +5,11 @@
         <label class="label-group">semester:
             <select ng-model="addbooks.Semester" placeholder="category" ng-options="semester for semester in semesters"></select>
         </label>
-    
-       <label class="label-group">subject:
-            <select ng-model="addroutine.Subjectid" placeholder="category" ng-options="subject as subject.subjectcode for subject in subjects"></select>
+          <label class="label-group">Day:
+            <select ng-model="addroutine.day" placeholder="category" ng-options="day for day in days"></select>
         </label>
+    
+      
         <label class="label-group">starting time:
             <select ng-model="addroutine.startingTime" placeholder="category" ng-options="time for time in times"></select>
         </label>
@@ -16,10 +17,10 @@
     <label class="label-group">Ending time:
             <select ng-model="addroutine.endingTime" placeholder="category" ng-options="time for time in times"></select>
         </label>
-        <label class="label-group">Day:
-            <select ng-model="addroutine.day" placeholder="category" ng-options="day for day in dayss"></select>
+       
+ <label class="label-group">subject:
+            <select ng-model="addroutine.Subjectid" placeholder="category" ng-options="subject as subject.subjectcode for subject in subjects"></select>
         </label>
-
          <label class="label-group">Teacher
             <input type="text" name="address" ng-model="addroutine.Teacher" required>
             <span ng-show="frm.address.$touched && frm.address.$invalid">Teacher is required!!</span>

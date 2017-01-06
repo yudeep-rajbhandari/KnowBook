@@ -1,33 +1,78 @@
-<div class="body1">
-<label class="label-group">faculty:
-            <select ng-model="addbooks.Faculties" placeholder="district" ng-options="faculty for faculty  in faculties"></select>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Fira+Sans:300' rel='stylesheet' type='text/css'>
+    <style>
+        input.ng-invalid.ng-dirty.ng-touched{
+            border:1px solid red;
+            color: #F97C7C;
+        }
+        button.ng-disabled{
+            background-color:#9CBF9C ;
+        }
+        label.label-group>span{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<form  name="frm ">
+
+
+
+    <fieldset>
+
+
+
+        <label class="label-group">faculty:
+            <select  ng-model="addbooks.Faculties" ng-options="faculty for faculty  in faculties"></select>
         </label>
 
         <label class="label-group">semester:
-            <select ng-model="addbooks.Semester" placeholder="category" ng-options="semester for semester in semesters"></select>
-        </label>
-          <label class="label-group">Day:
-            <select ng-model="addroutine.day" placeholder="category" ng-options="day for day in days"></select>
-        </label>
-    
-      
-        <label class="label-group">starting time:
-            <select ng-model="addroutine.startingTime" placeholder="category" ng-options="time for time in times"></select>
+            <select ng-model="addbooks.Semester" ng-options="semester for semester in semesters"></select>
         </label>
 
-    <label class="label-group">Ending time:
-            <select ng-model="addroutine.endingTime" placeholder="category" ng-options="time for time in times"></select>
+        <label class="label-group">Day:
+            <select ng-model="addroutine.day" ng-options="day for day in days"></select>
         </label>
-       
- <label class="label-group">subject:
-            <select ng-model="addroutine.Subjectid" placeholder="category" ng-options="subject as subject.subjectcode for subject in subjects"></select>
+
+        <label class="label-group">starting time:
+            <select ng-model="addroutine.startingTime" ng-options="time for time in times"></select>
         </label>
-         <label class="label-group">Teacher
+
+        <label class="label-group">Ending time:
+            <select ng-model="addroutine.endingTime" ng-options="time for time in times"></select>
+        </label>
+
+        <label class="label-group">subject:
+            <select ng-model="addroutine.Subjectid" ng-options="subject as subject.subjectcode for subject in subjects"></select>
+        </label>
+
+        <label class="label-group">Teacher
             <input type="text" name="address" ng-model="addroutine.Teacher" required>
             <span ng-show="frm.address.$touched && frm.address.$invalid">Teacher is required!!</span>
             <span ng-show="frm.address.$touched && frm.address.$error.required"></span>
         </label>
 
-        <button ng-click="saveroutine()">Save</button>
 
-</div>
+
+        <script type="text/javascript" src="//api.filestackapi.com/filestack.js"></script>
+
+
+        </div>
+        </div>
+
+
+
+    </fieldset>
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched"  ng-click="saveroutine()">Save</button>
+</form>
+
+</body>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>KNOW BOOKS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="newpage.css">
+
+</head>
+
+
+<div >
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" >
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+        <div class="collapse  navbar-collapse" id="myNavbar" ng-repeat="routin in routine">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">DAY</a></li>
+
+                <li ui-sref-active="active"><a ui-sref="home.login">{{routin.day}}</a></li>
+
+                
+          <!--      <li ui-sref-active="active"><a ui-sref="home.addsubject">Subjects</a></li>
+
+                <li ui-sref-active="active"><a ui-sref="home.addbook">Books</a></li>
+                <li ui-sref-active="active"><a ui-sref="home.routine">Routine</a></li>
+                <li ui-sref-active="active"><a ui-sref="home.view">View</a></li>
+
+-->
+           
+
+
+            </ul>
+           
+        </div>
+    </div>
+
+</nav>
+<div ui-view></div>
+</div>
+</html>

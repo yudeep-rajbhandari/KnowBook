@@ -33,7 +33,7 @@ router.post('/addroutine',function(req,res,next){
         })
 
 
-        router.get('/getroutine', function (req, res, next) {
+ /*       router.get('/getroutines1', function (req, res, next) {
    // console.log(req.params.subjectid);
     console.log("hello");
     model.find({})
@@ -50,8 +50,37 @@ router.post('/addroutine',function(req,res,next){
             next(err);
         }
     })
-        })
+        })*/
 
+router.get('/getroutine', function (req, res, next) {
+        console.log(req.query);
+        console.log("<<<<<<");
+    model.find({}).populate('Subjectid').exec(function (err, data) {
+        
+        if (err) {
+            throw (err);
+        }
+        if (data) {
+            res.status(200).json({ success: true, data: data })
+            console.log(data);
+        }
+        else {
+            next(err);
+        }
+    })
+})
+
+router.post('/deleteone',function(req,res,next){
+console.log(req.body.deleteItem);
+    model.remove({_id:req.body.deleteItem},function(err,data){
+        if(err){
+            throw(err);
+        }
+         if(!err){
+        res.status(200).json({message:'successfully deleted'})
+    }
+})
+})
 
 
 module.exports = router;

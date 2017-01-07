@@ -17,10 +17,11 @@
     availability:{{seerequest.availability}}<br>
     rack number:{{seerequest.rackNumber}}<br>
     <p><a href="{{seerequest.pdf.url}}">book pdf</a></p>
+    {{seerequest._id}}
     
     
 
-<button ng-click="deleteit()">Delete</button>
+<button ng-click="deleteit(seerequest._id)">Delete</button>
 
     <br>
     <br>

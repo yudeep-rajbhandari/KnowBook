@@ -61,7 +61,7 @@ router.get('/Requests/:subjectid', function (req, res, next) {
 
 router.post('/delete',function(req,res,next){
 console.log(req.body.deleteItem);
-    model.remove({Subjectid:req.body.deleteItem},function(err,data){
+    model.remove({_id:req.body.deleteItem},function(err,data){
         if(err){
             throw(err);
         }

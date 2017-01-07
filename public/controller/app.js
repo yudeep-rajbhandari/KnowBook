@@ -1,6 +1,6 @@
 
 
-var app = angular.module('knowbooks', ['ui.router', 'BackendService', 'toaster', 'service.authorization', 'angular-filepicker']);
+var app = angular.module('knowbooks', ['ui.router', 'BackendService', 'toaster', 'service.authorization', 'angular-filepicker','angular.filter']);
 
 app.run(function (principal, $rootScope) {
     principal.identity().then(function (data) {
@@ -98,6 +98,26 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider","filepickerP
                 roles: ['user']
             }
         })
+         .state('home.routineviewer', {
+
+            url: '/routineviewer',
+            templateUrl: 'templates/routineviewer.html',
+            controller: "booksController",
+            data: {
+                roles: ['user']
+            }
+        })
+
+         .state('home.navbar2', {
+
+            url: '/navbarRoutine',
+            templateUrl: 'templates/navbar2.html',
+            controller: "booksController",
+            data: {
+                roles: ['user']
+            }
+        })
+
 
  filepickerProvider.setKey('Anq0xcldQW6yRUWW5v1DVz');
 
@@ -156,6 +176,7 @@ app.controller('signUpController', ['$scope', '$http', 'toaster', '$state', 'pri
 app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'principal', 'service', '$rootScope','$stateParams','filepickerService',
     function ($scope, $http, toaster, $state, principal, service, $rootScope, $stateParams,filepickerService) {
         $scope.addsubject = {};
+        
         $scope.faculties=["CE","CS"];
         $scope.semesters=[1,2,3,4,5,6,7,8];
         $scope.addbooks={};
@@ -163,6 +184,9 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
         $scope.availabilities=["yes","no"];
         $scope.addroutine={};
         $scope.times=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+        $scope.view={};
+        
+$rootScope.val="hello";        
         $scope.days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"]
          $scope.upload = function(){
         filepickerService.pick(
@@ -240,8 +264,26 @@ console.log("<<<<<<");
            }
        })
 
-       if ($stateParams.subjectid) {
-            console.log($stateParams.subjectid);
+
+       $scope.deleteroutine=function(deleteid){
+           console.log(deleteid);
+service.delete({deleteItem:deleteid},'/routine/deleteone',function(err,response){
+
+    if(err){
+        throw(err);
+    }
+
+    if(!err){
+        toaster.pop("succes","successfully deleted" );
+        $state.reload();
+        
+    }
+})
+
+
+       }
+
+        $scope.requestfun=function(){
             service.get(null,'/books/Requests/' + $stateParams.subjectid, function (err, response) {
                 if (err) {
                     throw(err)
@@ -254,6 +296,12 @@ console.log("<<<<<<");
                 }
             })
         }
+       if ($stateParams.subjectid) {
+            console.log($stateParams.subjectid);
+            $scope.requestfun();
+       }
+          
+       
         
 
          $scope.addSubject = function () {
@@ -279,15 +327,17 @@ console.log("<<<<<<");
             )
         }
 
-$scope.deleteit=function(){
-service.delete({deleteItem:$scope.deleteid},'/books/delete',function(err,response){
-console.log($scope.deleteid);
+$scope.deleteit=function(id){
+    console.log(id);
+service.delete({deleteItem:id},'/books/delete',function(err,response){
+
     if(err){
         throw(err);
     }
 
     if(!err){
         toaster.pop("succes","successfully deleted" );
+        $scope.requestfun();
     }
 })
 }
@@ -315,7 +365,7 @@ console.log($scope.deleteid);
             )
         }
 
-        $scope.Requests = function () {
+    /*    $scope.Requests = function () {
             service.get(null,'/books/Requests', function (err, response) {
                 if (err) {
                     throw(err)
@@ -328,7 +378,7 @@ console.log($scope.deleteid);
                 }
             })
         }
-
+*/
         
         $scope.saveroutine=function(){
 
@@ -343,6 +393,27 @@ if(!err){
     $state.go("home.routine");
 }
             })
+        }
+
+        $scope.showroutine=function(faculty,semester){
+            console.log("routine123");
+
+            service.get(null,'/routine/getroutine',function(err,response){
+
+                if(err){
+                    throw(err);
+                }
+        if(!err){
+                $state.go("home.routineviewer");
+                
+            $rootScope.routine=response.data.data.filter(val=>{
+                return (val.Subjectid.Faculties==faculty && val.Subjectid.Semester==semester)
+            });
+    console.log($rootScope.routine); 
+    }    
+        })
+
+
         }
 
 

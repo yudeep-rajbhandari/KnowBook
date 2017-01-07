@@ -15,6 +15,8 @@
             <select ng-model="addbooks.Semester" placeholder="category" ng-options="semester for semester in semesters"></select>
         </label>
 
+        <button ng-click="showroutine(addbooks.Faculties,addbooks.Semester)" ng-if= "addbooks.Faculties && addbooks.Semester">Routine</button>
+
         <div ng-repeat="subject in subjects">
 
 <a ui-sref="home.booksdetails({subjectid:subject._id})"><h3>Subject Name:{{subject.SubjectName}}</h3></a>           
@@ -38,34 +40,7 @@ Credit      :{{subject.Credit}}
        
         </div>
 
-<div ng-repeat="seerequest in seeRequests">
 
-
-
-
-    Faculties:{{seerequest.Subjectid.Faculties}}
-    <br>
-    semester:{{seerequest.Subjectid.Semester}}
-    <br>
-    subject:{{seerequest.Subjectid.SubjectName}}
-    <br>
-    bookname:{{seerequest.bookName}}<br>
-    booktype:{{seerequest.booktype}}<br>
-    writer:{{seerequest.writer}}<br>
-    publication:{{seerequest.publication}}<br>
-    price:{{seerequest.price}}<br>
-    availability:{{seerequest.availability}}<br>
-    rack number:{{seerequest.rackNumber}}<br>
-    
-
-
-    <br>
-    <br>
-    <br>
-
-
-
-</div>
 </div>
 </body>
 </html>

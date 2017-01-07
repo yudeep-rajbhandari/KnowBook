@@ -1,0 +1,17 @@
+<label class="label-group">Day:
+            <select ng-model="view" placeholder="semester" ng-options="routin.day for routin in routine | unique:'day'"></select>
+        </label>
+
+
+<div ng-repeat="routin in routine|filter:view.day" ng-if="view.day">
+
+    {{routin.startingTime |date:'h:mma'}} -{{routin.endingTime|date:'h:mma'}} : {{routin.Subjectid.subjectcode}},{{routin.Subjectid.SubjectName}}<br>    Teacher: {{routin.Teacher}}
+
+    <button ng-click="deleteroutine(routin._id)">Delete</button>
+
+    <br>
+    <br>
+
+
+
+</div>

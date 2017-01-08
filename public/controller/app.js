@@ -119,7 +119,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider","filepickerP
         })
 
 
- filepickerProvider.setKey('Anq0xcldQW6yRUWW5v1DVz');
+ filepickerProvider.setKey('AxiX0R0guSJ6hMqeH2yNdz');
 
 }])
 
@@ -188,10 +188,13 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
         
 $rootScope.val="hello";        
         $scope.days=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"]
+         
+         
          $scope.upload = function(){
         filepickerService.pick(
             {
                mimetype: 'text/*',
+                //extension: 'txt',
                 language: 'en',
                 services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
                 //openTo: 'IMAGE_SEARCH'

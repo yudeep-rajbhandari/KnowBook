@@ -44,12 +44,15 @@
         </label>
 
         <label class="label-group">starting time:
-            <select ng-model="addroutine.startingTime" ng-options="time for time in times"></select>
+           <input type="time" ng-model="addroutine.startingTime"> 
         </label>
+        
 
         <label class="label-group">Ending time:
-            <select ng-model="addroutine.endingTime" ng-options="time for time in times"></select>
+          
+            <input type="time" ng-model="addroutine.endingTime">
         </label>
+        
 
         <label class="label-group">subject:
             <select ng-model="addroutine.Subjectid" ng-options="subject as subject.subjectcode for subject in subjects"></select>

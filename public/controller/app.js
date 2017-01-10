@@ -14,6 +14,7 @@ app.run(function (principal, $rootScope) {
 app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider","filepickerProvider", function ($stateProvider, $urlRouterProvider, $httpProvider,filepickerProvider) {
 
 
+filepickerProvider.setKey('AxiX0R0guSJ6hMqeH2yNdz');
     $urlRouterProvider.otherwise('/home/login');
 
     $stateProvider
@@ -119,7 +120,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider","filepickerP
         })
 
 
- filepickerProvider.setKey('AxiX0R0guSJ6hMqeH2yNdz');
+ 
 
 }])
 
@@ -183,7 +184,7 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
         $scope.booktypes=["text","reference","other"];
         $scope.availabilities=["yes","no"];
         $scope.addroutine={};
-        $scope.times=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
+      //  $scope.times=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
         $scope.view={};
         
 $rootScope.val="hello";        
@@ -193,8 +194,8 @@ $rootScope.val="hello";
          $scope.upload = function(){
         filepickerService.pick(
             {
-               mimetype: 'text/*',
-                //extension: 'txt',
+               
+                extension: 'txt',
                 language: 'en',
                 services: ['COMPUTER','DROPBOX','GOOGLE_DRIVE'],
                 //openTo: 'IMAGE_SEARCH'
@@ -205,7 +206,7 @@ $rootScope.val="hello";
                 $scope.$apply();
             }
         );
-    };
+    }; 
 
      $scope.upload1 = function(){
         filepickerService.pick(

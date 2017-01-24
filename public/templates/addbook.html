@@ -28,10 +28,11 @@
 
 
     <h1>Add new Books</h1>
+    {{editData[0].bookName}}
 
     <fieldset>
         <label class="label-group">Book Name
-            <input type="text" name="pname" placeholder="book name" ng-model="addbooks.bookName" required>
+            <input type="text" name="pname"  value="Mickey" ng-model="addbooks.bookName" required>
             <span ng-show="frm.pname.$touched && frm.pname.$invalid">Placename is required!!</span>
             <span ng-show="frm.pname.$touched && frm.pname.$error.required"></span>
         </label>
@@ -43,7 +44,7 @@
 
 
         <label class="label-group">Writer
-            <input type="text" name="lat" step="any" ng-model="addbooks.writer" required>
+            <input type="text" name="lat" value="Mickey" step="any" ng-model="addbooks.writer" required>
             <span ng-show="frm.lat.$touched && frm.lat.$invalid">Lattitude is required!!</span>
             <span ng-show="frm.lat.$touched && frm.lat.$error.required"></span>
         </label>
@@ -103,7 +104,8 @@
                 </div>
 
     
-    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addBooks()">Save</buttonclass>
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addBooks()" ng-if ="!paramsbook">Save</buttonclass>
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addBooks()"ng-if="paramsbook">Update</buttonclass>
 </form>
 
 </body>

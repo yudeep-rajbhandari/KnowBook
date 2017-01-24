@@ -19,7 +19,7 @@
     <p><a href="{{seerequest.pdf.url}}">book pdf</a></p>
     {{seerequest._id}}
     
-    
+  <a ui-sref="home.addbook({bookid:seerequest._id})" > Edit</a>  
 
 <button ng-click="deleteit(seerequest._id)">Delete</button>
 

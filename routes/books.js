@@ -59,6 +59,26 @@ router.get('/Requests/:subjectid', function (req, res, next) {
     })
 })
 
+router.get('/Edithandler/:bookid',function(req,res,next){
+    
+
+    model.findOne({_id:req.params.bookid},function(err,data){
+
+        if(err){
+            throw(err);
+        }
+if(!err){
+
+    res.status(200).json({success:true,data:data})
+    console.log(data);
+}    
+else{
+    next(err);
+}
+
+})
+})
+
 router.post('/delete',function(req,res,next){
 console.log(req.body.deleteItem);
     model.remove({_id:req.body.deleteItem},function(err,data){

@@ -92,7 +92,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
 
         .state('home.routine', {
 
-            url: '/routine',
+            url: '/routine/:routineid',
             templateUrl: 'templates/routine.html',
             controller: "booksController",
             data: {
@@ -194,6 +194,13 @@ $scope.paramsbook=$stateParams.bookid;
         if($stateParams.bookid){
             service.get(null, '/books/Edithandler/' + $stateParams.bookid, function(err,data){
                 $scope.addbooks=data.data.data;
+                debugger
+            })
+        }
+        $scope.paramsroutine=$stateParams.routineid;
+        if($stateParams.routineid){
+            service.get(null, '/routine/Edithandler/' + $stateParams.routineid, function(err,data){
+                $scope.addroutine=data.data.data;
                 debugger
             })
         }
@@ -406,6 +413,36 @@ $scope.paramsbook=$stateParams.bookid;
                 }
             })
         }
+$scope.updateBooks=function(){
+service.save({updatedata:$scope.addbooks},'/books/update',function(err,response){
+
+    if(err){
+        throw (err)
+    }
+if(!err){
+
+        toaster.pop("success","successfully updated");
+        $state.go("home.view");
+}
+})
+
+}
+
+        $scope.updateroutine=function(){
+            service.save({updatedata:$scope.addroutine},'/routine/update',function(err,response){
+
+                if(err){
+                    throw (err)
+                }
+                if(!err){
+
+                    toaster.pop("success","successfully updated");
+                    $state.go("home.view");
+                }
+            })
+
+        }
+
 
         $scope.showroutine = function (faculty, semester) {
             console.log("routine123");

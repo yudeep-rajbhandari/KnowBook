@@ -91,6 +91,20 @@ console.log(req.body.deleteItem);
 })
 })
 
+router.post('/update',function(req,res,next) {
+    console.log(req.body.updatedata);
+    model.findByIdAndUpdate(req.body.updatedata._id, {$set: req.body.updatedata}, {new: true}, function (err, tank) {
+        if (err) {
+            throw (err);
+        }
+        if (!err) {
+            res.status(200).json({message: 'successfully deleted'})
+        }
+
+    })
+
+})
+
 
 
 

@@ -12,6 +12,41 @@ router.get('/test', function(req, res, next) {
 });
 
 
+router.get('/Edithandler/:routineid',function(req,res,next){
+
+
+    model.findOne({_id:req.params.routineid},function(err,data){
+
+        if(err){
+            throw(err);
+        }
+        if(!err){
+
+            res.status(200).json({success:true,data:data})
+            console.log(data);
+        }
+        else{
+            next(err);
+        }
+
+    })
+})
+
+router.post('/update',function(req,res,next) {
+    console.log(req.body.updatedata);
+    model.findByIdAndUpdate(req.body.updatedata._id, {$set: req.body.updatedata}, {new: true}, function (err, tank) {
+        if (err) {
+            throw (err);
+        }
+        if (!err) {
+            res.status(200).json({message: 'successfully deleted'})
+        }
+
+    })
+
+})
+
+
 router.post('/addroutine',function(req,res,next){
 
     var addnewdata=req.body.routine;

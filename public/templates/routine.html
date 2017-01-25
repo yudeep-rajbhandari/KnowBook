@@ -75,7 +75,8 @@
 
 
     </fieldset>
-    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched"  ng-click="saveroutine()">Save</button>
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched"  ng-click="saveroutine()" ng-if="!paramsroutine">Save</button>
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched"  ng-click="updateroutine()" ng-if="paramsroutine">Update</button>
 </form>
 
 </body>

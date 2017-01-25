@@ -62,7 +62,9 @@ router.get('/Requests/:subjectid', function (req, res, next) {
 router.get('/Edithandler/:bookid',function(req,res,next){
     
 
-    model.findOne({_id:req.params.bookid},function(err,data){
+    model.findOne({_id:req.params.bookid})
+        .populate('Subjectid')
+        .exec(function(err,data){
 
         if(err){
             throw(err);

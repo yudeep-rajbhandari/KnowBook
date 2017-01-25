@@ -35,8 +35,8 @@
             <select  ng-model="addbooks.Faculties" ng-options="faculty for faculty  in faculties"></select>
         </label>
 
-        <label class="label-group">semester:
-            <select ng-model="addbooks.Semester" ng-options="semester for semester in semesters"></select>
+        <label class="label-group">semester:{{addbooks.Semester}}
+            <select ng-model="addbooks.Semester"  ng-options="semester for semester in semesters"></select>
         </label>
 
         <label class="label-group">Day:
@@ -49,13 +49,13 @@
         
 
         <label class="label-group">Ending time:
-          
+
             <input type="time" ng-model="addroutine.endingTime">
         </label>
-        
 
-        <label class="label-group">subject:
-            <select ng-model="addroutine.Subjectid" ng-options="subject as subject.subjectcode for subject in subjects"></select>
+        Subject
+        <label class="label-group">
+            <select ng-model="addroutine.Subjectid._id" ng-options="subject._id as subject.subjectcode for subject in subjects"></select>
         </label>
 
         <label class="label-group">Teacher

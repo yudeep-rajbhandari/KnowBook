@@ -12,10 +12,15 @@ router.get('/test', function(req, res, next) {
 });
 
 
+
+
+
 router.get('/Edithandler/:routineid',function(req,res,next){
 
 
-    model.findOne({_id:req.params.routineid},function(err,data){
+    model.findOne({_id:req.params.routineid})
+        .populate('Subjectid').
+    exec(function(err,data){
 
         if(err){
             throw(err);

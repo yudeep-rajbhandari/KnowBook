@@ -1,5 +1,3 @@
-
-
 var app = angular.module('knowbooks', ['ui.router', 'BackendService', 'toaster', 'service.authorization', 'angular-filepicker', 'angular.filter']);
 
 app.run(function (principal, $rootScope) {
@@ -19,7 +17,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
 
     $stateProvider
 
-        // HOME STATES AND NESTED VIEWS =======================================
+    // HOME STATES AND NESTED VIEWS =======================================
 
         .state('home', {
             abstract: true,
@@ -120,8 +118,6 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
         })
 
 
-
-
 }])
 
 
@@ -131,7 +127,7 @@ app.controller('signUpController', ['$scope', '$http', 'toaster', '$state', 'pri
 
 
         $scope.checkForm = function () {
-            service.save({ user: $scope.formdata }, "/users/login", function (err, response) {
+            service.save({user: $scope.formdata}, "/users/login", function (err, response) {
 
                 if (!err) {
 
@@ -179,7 +175,7 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
         $scope.addsubject = {};
 
         $scope.faculties = ["CE", "CS"];
-        $scope.semesters = [1, 2, 3, 4, 5, 6, 7, 8];
+        $scope.semesters = ["1", "2", "3", "4", "5", "6", "7", "8"];
         $scope.addbooks = {};
         $scope.booktypes = ["text", "reference", "other"];
         $scope.availabilities = ["yes", "no"];
@@ -189,19 +185,23 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
 
         $rootScope.val = "hello";
         $scope.days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-console.log($stateParams.bookid)
-$scope.paramsbook=$stateParams.bookid;
-        if($stateParams.bookid){
-            service.get(null, '/books/Edithandler/' + $stateParams.bookid, function(err,data){
-                $scope.addbooks=data.data.data;
-                debugger
+        console.log($stateParams.bookid)
+        $scope.paramsbook = $stateParams.bookid;
+        if ($stateParams.bookid) {
+            service.get(null, '/books/Edithandler/' + $stateParams.bookid, function (err, data) {
+                $scope.addbooks = data.data.data;
+                $scope.addbooks = Object.assign($scope.addbooks, $scope.addbooks.Subjectid)
+                console.log($scope.addbooks);
             })
         }
-        $scope.paramsroutine=$stateParams.routineid;
-        if($stateParams.routineid){
-            service.get(null, '/routine/Edithandler/' + $stateParams.routineid, function(err,data){
-                $scope.addroutine=data.data.data;
-                debugger
+        $scope.paramsroutine = $stateParams.routineid;
+        if ($stateParams.routineid) {
+            service.get(null, '/routine/Edithandler/' + $stateParams.routineid, function (err, data) {
+                $scope.addroutine = data.data.data;
+                $scope.addroutine.startingTime = new Date($scope.addroutine.startingTime);
+                $scope.addroutine.endingTime = new Date($scope.addroutine.endingTime);
+                $scope.addbooks = $scope.addroutine.Subjectid;
+                console.log($scope.addbooks)
             })
         }
 
@@ -260,7 +260,10 @@ $scope.paramsbook=$stateParams.bookid;
             console.log("<<<<<<");
             if (($scope.addbooks.Faculties) && ($scope.addbooks.Semester)) {
                 console.log("<<<<<<");
-                service.get({ Faculty: $scope.addbooks.Faculties, Semester: $scope.addbooks.Semester }, "/subject/getsubject",
+                service.get({
+                        Faculty: $scope.addbooks.Faculties,
+                        Semester: $scope.addbooks.Semester
+                    }, "/subject/getsubject",
                     function (err, data) {
                         if (err) {
                             throw (err);
@@ -286,7 +289,7 @@ $scope.paramsbook=$stateParams.bookid;
 
         $scope.deleteroutine = function (deleteid) {
             console.log(deleteid);
-            service.delete({ deleteItem: deleteid }, '/routine/deleteone', function (err, response) {
+            service.delete({deleteItem: deleteid}, '/routine/deleteone', function (err, response) {
 
                 if (err) {
                     throw (err);
@@ -321,12 +324,10 @@ $scope.paramsbook=$stateParams.bookid;
         }
 
 
-
-
         $scope.addSubject = function () {
             console.log($scope.addsubject);
 
-            service.save({ addSubject: $scope.addsubject }, "/subject/savedata",
+            service.save({addSubject: $scope.addsubject}, "/subject/savedata",
                 function (err, response) {
 
 
@@ -348,7 +349,7 @@ $scope.paramsbook=$stateParams.bookid;
 
         $scope.deleteit = function (id) {
             console.log(id);
-            service.delete({ deleteItem: id }, '/books/delete', function (err, response) {
+            service.delete({deleteItem: id}, '/books/delete', function (err, response) {
 
                 if (err) {
                     throw (err);
@@ -364,7 +365,7 @@ $scope.paramsbook=$stateParams.bookid;
         $scope.addBooks = function () {
 
             console.log($scope.addbooks.Subjectid)
-            service.save({ addBook: $scope.addbooks }, "/books/savedata",
+            service.save({addBook: $scope.addbooks}, "/books/savedata",
                 function (err, response) {
 
 
@@ -385,23 +386,23 @@ $scope.paramsbook=$stateParams.bookid;
         }
 
         /*    $scope.Requests = function () {
-                service.get(null,'/books/Requests', function (err, response) {
-                    if (err) {
-                        throw(err)
-    
-                    }
-                    if (!err) {
-                        console.log("<<<<<<")
-                        $scope.seeRequests = response.data.data;
-                       console.log($scope.seeRequests);
-                    }
-                })
-            }
-    */
+         service.get(null,'/books/Requests', function (err, response) {
+         if (err) {
+         throw(err)
+
+         }
+         if (!err) {
+         console.log("<<<<<<")
+         $scope.seeRequests = response.data.data;
+         console.log($scope.seeRequests);
+         }
+         })
+         }
+         */
 
         $scope.saveroutine = function () {
 
-            service.save({ routine: $scope.addroutine }, '/routine/addroutine', function (err, data) {
+            service.save({routine: $scope.addroutine}, '/routine/addroutine', function (err, data) {
 
                 if (err) {
                     throw (err)
@@ -413,30 +414,30 @@ $scope.paramsbook=$stateParams.bookid;
                 }
             })
         }
-$scope.updateBooks=function(){
-service.save({updatedata:$scope.addbooks},'/books/update',function(err,response){
+        $scope.updateBooks = function () {
+            service.save({updatedata: $scope.addbooks}, '/books/update', function (err, response) {
 
-    if(err){
-        throw (err)
-    }
-if(!err){
-
-        toaster.pop("success","successfully updated");
-        $state.go("home.view");
-}
-})
-
-}
-
-        $scope.updateroutine=function(){
-            service.save({updatedata:$scope.addroutine},'/routine/update',function(err,response){
-
-                if(err){
+                if (err) {
                     throw (err)
                 }
-                if(!err){
+                if (!err) {
 
-                    toaster.pop("success","successfully updated");
+                    toaster.pop("success", "successfully updated");
+                    $state.go("home.view");
+                }
+            })
+
+        }
+
+        $scope.updateroutine = function () {
+            service.save({updatedata: $scope.addroutine}, '/routine/update', function (err, response) {
+
+                if (err) {
+                    throw (err)
+                }
+                if (!err) {
+
+                    toaster.pop("success", "successfully updated");
                     $state.go("home.view");
                 }
             })
@@ -467,7 +468,7 @@ if(!err){
 
         $scope.Edit = function (Edit) {
             console.log(Edit);
-            service.get({ bookid: Edit }, '/books/Edithandler', function (err, response) {
+            service.get({bookid: Edit}, '/books/Edithandler', function (err, response) {
 
 
                 if (err) {
@@ -482,9 +483,6 @@ if(!err){
             })
 
         }
-
-
-
 
 
     }

@@ -59,6 +59,26 @@ router.get('/Requests/:subjectid', function (req, res, next) {
     })
 })
 
+router.get('/Request1/:subjectcode', function (req, res, next) {
+    // console.log(req.params.subjectid);
+    console.log("hello");
+    model.find({Subjectid:req.params.subjectid})
+        .populate('Subjectid')
+        .exec(function (err, data) {
+
+            if (err) {
+                throw (err);
+            }
+            if (data) {
+                res.status(200).json({ success: true, data: data })
+                console.log(data);
+            }
+            else {
+                next(err);
+            }
+        })
+})
+
 router.get('/Edithandler/:bookid',function(req,res,next){
     
 

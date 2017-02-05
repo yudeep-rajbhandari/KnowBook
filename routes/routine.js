@@ -95,12 +95,13 @@ router.post('/addroutine',function(req,res,next){
 router.get('/getroutine', function (req, res, next) {
         console.log(req.query);
         console.log("<<<<<<");
-    model.find({}).populate('Subjectid').exec(function (err, data) {
+    model.find({}).sort('startingTime:1').populate('Subjectid').exec(function (err, data) {
         
         if (err) {
             throw (err);
         }
         if (data) {
+
             res.status(200).json({ success: true, data: data })
             console.log(data);
         }
@@ -109,6 +110,8 @@ router.get('/getroutine', function (req, res, next) {
         }
     })
 })
+
+
 
 router.post('/deleteone',function(req,res,next){
 console.log(req.body.deleteItem);

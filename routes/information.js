@@ -34,19 +34,16 @@ router.post('/savedata', function (req, res, next) {
 })
 
 router.get('/faculty', function (req, res, next) {
+model.find({},function(err,data){
+    if(err){
+        throw (err);
+    }
+    if(!err){
+        res.status(200).json({success:true,data:data})
+    }
+})
 
-    model.find().distinct('subject', function (err, data) {
 
-        if (err) {
-            throw (err);
-        }
-        if (data) {
-            res.status(200).json({ success: true, data: data })
-        }
-        else {
-            next(err);
-        }
-    })
 })
 
 

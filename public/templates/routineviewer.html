@@ -3,7 +3,7 @@
         </label>
 
 
-<div ng-repeat="routin in routine|orderBy:'startingTime'|filter:view.day" ng-if="view.day">
+<div ng-repeat="routin in routine|filter:view.day" ng-if="view.day">
 
     {{routin.startingTime |date:'h:mma'}} -{{routin.endingTime|date:'h:mma'}} : {{routin.Subjectid.subjectcode}},{{routin.Subjectid.SubjectName}}<br>    Teacher: {{routin.Teacher}}
 

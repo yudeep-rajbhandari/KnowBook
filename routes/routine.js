@@ -95,7 +95,7 @@ router.post('/addroutine',function(req,res,next){
 router.get('/getroutine', function (req, res, next) {
         console.log(req.query);
         console.log("<<<<<<");
-    model.find({}).sort('startingTime:1').populate('Subjectid').exec(function (err, data) {
+    model.find({}).sort({day:1,startingTime:1}).populate('Subjectid').exec(function (err, data) {
         
         if (err) {
             throw (err);

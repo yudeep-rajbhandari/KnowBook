@@ -1,0 +1,18 @@
+<div ng-repeat="question in questions">
+
+
+
+
+
+    subject:{{question.Subjectid.SubjectName}}
+    <br>
+    Year:{{question.Year}}<br>
+    Type:{{question.Types}}<br>
+
+    <p><a href="{{question.pdf.url}}">Download pdf</a></p>
+
+
+
+    <button ng-click="deletequestion(question._id)">Delete</button>
+    <br>
+    <br>

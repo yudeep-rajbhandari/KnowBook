@@ -39,6 +39,34 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
                 roles: []
             }
         })
+
+        .state('home.viewnotes', {
+
+            url: '/viewnotes/:subjectid1',
+            templateUrl: 'templates/notesview.html',
+            controller: "booksController",
+            data: {
+                roles: []
+            }
+        })
+        .state('home.viewquestion', {
+
+            url: '/viewquestion/:subjectid2',
+            templateUrl: 'templates/questionviewer.html',
+            controller: "booksController",
+            data: {
+                roles: []
+            }
+        })
+        .state('home.pastquestion', {
+
+            url: '/pastquestions',
+            templateUrl: 'templates/pastquestions.html',
+            controller: "booksController",
+            data: {
+                roles: []
+            }
+        })
         .state('home.addbook', {
 
             url: '/addbook?bookid',
@@ -116,6 +144,16 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
                 roles: ['user']
             }
         })
+        .state('home.notes', {
+
+            url: '/addnotes',
+            templateUrl: 'templates/addnotes.html',
+            controller: "booksController",
+            data: {
+                roles: ['user']
+            }
+        })
+
 
 
 }])
@@ -180,6 +218,9 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
         $scope.booktypes = ["text", "reference", "other"];
         $scope.availabilities = ["yes", "no"];
         $scope.addroutine = {};
+        $scope.addnotes={};
+        $scope.types=["Regular","Compart","Internal","Other"];
+        $scope.addquestion={};
         //  $scope.times=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24];
         $scope.view = {};
 
@@ -203,6 +244,43 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
                 $scope.addbooks = $scope.addroutine.Subjectid;
                 console.log($scope.addbooks)
             })
+        }
+        $scope.addNotes=function () {
+
+            service.save({addnotes:$scope.addnotes},"/notes/addnotes",function (err,response) {
+
+                if(err){
+                    throw (err)
+                }
+                if(!err){
+                    console.log(response);
+                    toaster.pop("Success","successfully added your note with topic  "+response.data.data.NoteTopic);
+                    $state.go("home.view");
+                }
+
+            })
+
+
+
+        }
+
+        $scope.addQuestion=function () {
+
+            service.save({addquestion:$scope.addquestion},"/pastquestion/addquestion",function (err,response) {
+
+                if(err){
+                    throw (err)
+                }
+                if(!err){
+                    console.log(response);
+                    toaster.pop("Success","successfully added your question of year  "+response.data.data.Year ,"of type "+response.data.data.Types);
+                    $state.go("home.view");
+                }
+
+            })
+
+
+
         }
 
 
@@ -238,6 +316,37 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
                 }
             );
         };
+        $scope.upload2 = function () {
+            filepickerService.pick(
+                {
+                    extension: 'pdf',
+                    language: 'en',
+                    services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE'],
+                    //openTo: 'IMAGE_SEARCH'
+                },
+                function (Blob) {
+                    console.log(JSON.stringify(Blob));
+                    $scope.addnotes.pdf = Blob;
+                    $scope.$apply();
+                }
+            );
+        };
+        $scope.upload3 = function () {
+            filepickerService.pick(
+                {
+                    extension: 'pdf',
+                    language: 'en',
+                    services: ['COMPUTER', 'DROPBOX', 'GOOGLE_DRIVE'],
+                    //openTo: 'IMAGE_SEARCH'
+                },
+                function (Blob) {
+                    console.log(JSON.stringify(Blob));
+                    $scope.addquestion.pdf = Blob;
+                    $scope.$apply();
+                }
+            );
+        };
+
         //Multiple files upload set to 3 as max number
         $scope.uploadMultiple = function () {
             filepickerService.pickMultiple(
@@ -318,9 +427,46 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
                 }
             })
         }
+
+        $scope.requestfun1 = function () {
+            service.get(null, '/notes/Requests/' + $stateParams.subjectid1, function (err, response) {
+                if (err) {
+                    throw (err)
+                }
+                if (!err) {
+                    $scope.notes = response.data.data;
+                    console.log($scope.notes);
+                   // $scope.deleteid = $stateParams.subjectid;
+
+                }
+            })
+        }
+
+        $scope.requestfun2 = function () {
+            service.get(null, '/pastquestion/Requests/' + $stateParams.subjectid2, function (err, response) {
+                if (err) {
+                    throw (err)
+                }
+                if (!err) {
+                    $scope.questions = response.data.data;
+                    console.log($scope.questions);
+                    // $scope.deleteid = $stateParams.subjectid;
+
+                }
+            })
+        }
         if ($stateParams.subjectid) {
             console.log($stateParams.subjectid);
             $scope.requestfun();
+        }
+        if ($stateParams.subjectid1) {
+            console.log($stateParams.subjectid1);
+            $scope.requestfun1();
+        }
+
+        if ($stateParams.subjectid2) {
+            console.log($stateParams.subjectid2);
+            $scope.requestfun2();
         }
 
 
@@ -358,6 +504,34 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
                 if (!err) {
                     toaster.pop("succes", "successfully deleted");
                     $scope.requestfun();
+                }
+            })
+        }
+        $scope.deletenotes = function (id) {
+            console.log(id);
+            service.delete({deleteItem: id}, '/notes/delete', function (err, response) {
+
+                if (err) {
+                    throw (err);
+                }
+
+                if (!err) {
+                    toaster.pop("success","successfully deleted");
+                    $scope.requestfun1();
+                }
+            })
+        }
+        $scope.deletequestion = function (id) {
+            console.log(id);
+            service.delete({deleteItem: id}, '/pastquestion/delete', function (err, response) {
+
+                if (err) {
+                    throw (err);
+                }
+
+                if (!err) {
+                    toaster.pop("success","successfully deleted");
+                    $scope.requestfun2();
                 }
             })
         }

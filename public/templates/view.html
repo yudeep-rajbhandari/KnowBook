@@ -28,7 +28,11 @@ Credit      :{{subject.Credit}}
 <br>
 
 
-<p><a href="{{subject.picture.url}}">Download syllabus</a></p>
+<a href="{{subject.picture.url}}">Download syllabus</a><br>
+            <a ui-sref="home.viewnotes({subjectid1:subject._id})" > Notes</a><br>
+
+
+            <a ui-sref="home.viewquestion({subjectid2:subject._id})" > Past Questions</a>
    
      <!-- <img ng-src="{{subject.picture.url  }}" /> -->
  

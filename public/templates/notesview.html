@@ -1,0 +1,17 @@
+<div ng-repeat="note in notes">
+
+
+
+
+
+    subject:{{note.Subjectid.SubjectName}}
+    <br>
+    note:{{note.NoteTopic}}<br>
+
+    <p><a href="{{note.pdf.url}}">Download pdf</a></p>
+
+
+
+    <button ng-click="deletenotes(note._id)">Delete</button>
+    <br>
+    <br>

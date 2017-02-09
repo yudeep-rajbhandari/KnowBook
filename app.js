@@ -11,6 +11,8 @@ var books=require('./routes/books');
 var information=require('./routes/information');
 var subject=require('./routes/subject');
 var routine=require('./routes/routine');
+var notes=require('./routes/notes');
+var pastquestion=require('./routes/pastquestion');
 
 var app = express();
 require('./config/mongoFile')(app);
@@ -33,7 +35,8 @@ app.use('/books', books);
 app.use('/information',information);
 app.use('/subject',subject);
 app.use('/routine',routine);
-
+app.use('/notes',notes);
+app.use('/pastquestion',pastquestion);
 app.get('*', function(req, res) {
   res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
 });

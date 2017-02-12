@@ -4,6 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var model = require('./../models/notes.js');
+var subjectModel=require('./../models/subject');
 
 
 
@@ -32,7 +33,7 @@ router.post('/addnotes', function (req, res, next) {
 router.get('/Requests/:subjectid1', function (req, res, next) {
     // console.log(req.params.subjectid);
     console.log("hello");
-    model.find({Subjectid:req.params.subjectid1})
+    subjectModel.find({Subjectid:req.params.subjectid1})
         .populate('Subjectid')
         .exec(function (err, data) {
 
@@ -46,6 +47,31 @@ router.get('/Requests/:subjectid1', function (req, res, next) {
             else {
                 next(err);
             }
+        })
+})
+
+router.get('/Requestsubject', function (req, res, next) {
+    // console.log(req.params.subjectid);
+    console.log("hello");
+    subjectModel.find({Faculties:req.query.Faculty,Semester:req.query.Semester})
+        .exec(function (err, data) {
+            var subjectIds=data.map(val=>{
+                return val._id;
+            })
+            model.find({Subjectid:{$in:subjectIds}}).populate('Subjectid').exec(function (err,data) {
+                if (err) {
+                    throw (err);
+                }
+                if (data) {
+                    res.status(200).json({ success: true, data: data })
+                    console.log(data);
+                }
+                else {
+                    next(err);
+                }
+            })
+
+
         })
 })
 router.post('/delete',function(req,res,next){

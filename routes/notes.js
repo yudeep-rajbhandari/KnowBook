@@ -33,7 +33,7 @@ router.post('/addnotes', function (req, res, next) {
 router.get('/Requests/:subjectid1', function (req, res, next) {
     // console.log(req.params.subjectid);
     console.log("hello");
-    subjectModel.find({Subjectid:req.params.subjectid1})
+    model.find({Subjectid:req.params.subjectid1})
         .populate('Subjectid')
         .exec(function (err, data) {
 

@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/test', function(req, res, next) {
-  res.json({message:"this is done"})
+  res.json({message:"this is done again"})
 });
 
 

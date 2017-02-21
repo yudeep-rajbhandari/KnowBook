@@ -4,6 +4,7 @@
 var express = require('express');
 var router = express.Router();
 var model = require('./../models/pastquestion.js');
+var subjectModel=require('./../models/subject');
 
 
 

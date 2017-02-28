@@ -19,7 +19,9 @@
 
         <div ng-repeat="subject in subjects">
 
-<a ui-sref="home.booksdetails({subjectid:subject._id})"><h3>Subject Name:{{subject.SubjectName}}</h3></a>           
+<a ui-sref="home.booksdetails({subjectid:subject._id})"><h3>Subject Name:{{subject.SubjectName}}</h3></a>
+
+            <button ng-click="deletesubject(subject._id)">Delete subject</button>
 
 <br>
 Subject code:{{subject.subjectcode}}

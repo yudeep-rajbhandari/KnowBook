@@ -536,6 +536,20 @@ app.controller('booksController', ['$scope', '$http', 'toaster', '$state', 'prin
             })
         }
 
+        $scope.deletesubject=function (getsubject) {
+            service.delete({deletesubject:getsubject},"/subject/deletesubject",function (err,response) {
+                if(err){
+                    throw(err);
+                }
+                if(!err){
+
+                    toaster.pop("success","deleted successfully");
+                    $state.reload();
+                }
+            })
+
+        }
+
         $scope.addBooks = function () {
 
             console.log($scope.addbooks.Subjectid)

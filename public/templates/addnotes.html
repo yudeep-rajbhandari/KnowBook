@@ -2,15 +2,18 @@
 
 
 <label class="label-group">faculty:
-    <select ng-model="addbooks.Faculties" placeholder="district" ng-options="faculty for faculty  in faculties"></select>
+    <select ng-model="addbooks.Faculties" name="faculty" ng-options="faculty for faculty  in faculties" required></select>
+    <span ng-show="frm.faculty.$touched&&frm.faculty.$error.required"></span>
 </label>
 
 <label class="label-group">semester:
-    <select ng-model="addbooks.Semester" placeholder="category" ng-options="semester for semester in semesters"></select>
+    <select ng-model="addbooks.Semester" name="semester" ng-options="semester for semester in semesters" required></select>
+    <span ng-show="frm.semester.$touched&&frm.semester.$error.required"></span>
 </label>
 
 <label class="label-group">subject:
-    <select ng-model="addnotes.Subjectid._id" placeholder="category" ng-options="subject._id as subject.subjectcode for subject in subjects"></select>
+    <select ng-model="addnotes.Subjectid._id" name="subject" ng-options="subject._id as subject.subjectcode for subject in subjects" required></select>
+    <span ng-show="frm.subject.$touched&&frm.subject.$error.required"></span>
 </label>
 
 <label class="label-group">Note Topic

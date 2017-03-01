@@ -1,3 +1,4 @@
+
 <head>
 
     <meta charset="utf-8">
@@ -9,22 +10,21 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Fira+Sans:300' rel='stylesheet' type='text/css'>
     <style>
-        input.ng-invalid.ng-dirty.ng-touched {
-            border: 1px solid red;
+        input.ng-invalid.ng-dirty.ng-touched.ng-error{
+            border:1px solid red;
             color: #F97C7C;
         }
-
-        button.ng-disabled {
-            background-color: #9CBF9C;
+        button.ng-disabled{
+            background-color:#9CBF9C ;
         }
-
-        label.label-group > span {
+        label.label-group>span{
             color: red;
         }
     </style>
 </head>
 <body>
-<form name="frm" ng-submit= "frm.$valid && addbooks.pdf && addBooks()" novalidate>
+<form  name="frm ">
+
 
 
     <h1>Add New Books</h1>
@@ -32,114 +32,94 @@
 
     <fieldset>
         <label class="label-group">Book Name
-            <input type="text" name="pname"  ng-model="addbooks.bookName" required>
-            <span ng-show="(frm.pname.$touched||frm.$submitted) && frm.pname.$error.required">Bookname is required!!</span>
+            <input type="text" name="pname"  value="Mickey" ng-model="addbooks.bookName" required>
+            <span ng-show="frm.pname.$touched && frm.pname.$invalid">Bookname is required!!</span>
+            <span ng-show="frm.pname.$touched && frm.pname.$error.required"></span>
         </label>
 
 
         <label class="label-group">Book type:
-            <select ng-model="addbooks.booktype" placeholder="district" name="booktype"
-                    ng-options="booktype for booktype  in booktypes" required></select>
-            <span ng-show="(frm.booktype.$touched||frm.$submitted) && frm.booktype.$error.required">Booktype is required!!</span>
+
+            <select ng-model="addbooks.booktype" name="booktype" placeholder="district" ng-options="booktype for booktype  in booktypes" required>
+
+            </select>
+
+            <span ng-show="frm.booktype.$touched&&frm.booktype.$error.required">Select booktype</span>
+
 
         </label>
 
 
         <label class="label-group">Writer
-            <input type="text" name="lat"  step="any" ng-model="addbooks.writer" required>
-            <span ng-show="(frm.lat.$touched||frm.$submitted) && frm.lat.$error.required">Writer is required!!</span>
-
+            <input type="text" name="lat" value="Mickey" step="any" ng-model="addbooks.writer" required>
+            <span ng-show="frm.lat.$touched && frm.lat.$invalid">Writer is required!!</span>
+            <span ng-show="frm.lat.$touched && frm.lat.$error.required"></span>
         </label>
 
 
         <label class="label-group">publication
             <input type="text" name="long" step="any" ng-model="addbooks.publication" required>
-            <span ng-show="(frm.long.$touched||frm.$submitted) && frm.long.$error.required">Publication is required!!</span>
-
+            <span ng-show="frm.long.$touched && frm.long.$invalid">Publication is required!!</span>
+            <span ng-show="frm.long.$touched && frm.long.$error.required"></span>
         </label>
 
 
         <label class="label-group">price
             <input type="text" name="address" ng-model="addbooks.price" required>
-            <span ng-show="(frm.address.$touched||frm.$submitted) && frm.address.$error.required">price is required!!</span>
-
+            <span ng-show="frm.address.$touched && frm.address.$invalid">Price is required!!</span>
+            <span ng-show="frm.address.$touched && frm.address.$error.required"></span>
         </label>
 
 
-        <label class="label-group">availability:
-            <select ng-model="addbooks.availability" name="paname" placeholder="district"
-                    ng-options="availability for availability  in availabilities" required></select>
-            <span ng-show="(frm.paname.$touched||frm.$submitted) && frm.paname.$error.required">availability is required!!</span>
-
+       <label class="label-group">availability:
+            <select ng-model="addbooks.availability" placeholder="district" ng-options="availability for availability  in availabilities" required></select>
+           <span ng-show="frm.booktype.$touched&&frm.booktype.$error"></span>
+           <span ng-show="frm.booktype.$touched&&frm.booktype.$error.required"></span>
         </label>
 
         <label class="label-group">rackNumber
-            <input type="text" name="racknumber" ng-model="addbooks.rackNumber" required>
-            <span ng-show="(frm.racknumber.$touched||frm.$submitted) && frm.racknumber.$error.required">Racknumber is required!!</span>
-
+            <input type="text" name="image" ng-model="addbooks.rackNumber" required>
+            <span ng-show="frm.address.$touched && frm.address.$invalid">Rack Number is required!!</span>
+            <span ng-show="frm.address.$touched && frm.address.$error.required"></span>
         </label>
 
         <label class="label-group">faculty:
-            <select ng-model="addbooks.Faculties" placeholder="district" name="faculty"
-                    ng-options="faculty for faculty  in faculties" required></select>
-            <span ng-show="(frm.faculty.$touched||frm.$submitted) && frm.faculty.$error.required">Faculty is required!!</span>
-
+            <select ng-model="addbooks.Faculties" name="faculty"  ng-options="faculty for faculty  in faculties" required></select>
+            <span ng-show="frm.faculty.$touched && frm.faculty.$error.required"></span>
         </label>
 
         <label class="label-group">semester:
-            <select ng-model="addbooks.Semester" placeholder="category" name="semester"
-                    ng-options="semester for semester in semesters" required></select>
-            <span ng-show="(frm.semester.$touched||frm.$submitted) && frm.semester.$error.required">Semester is required!!</span>
+            <select ng-model="addbooks.Semester" name="semester"  ng-options="semester for semester in semesters"required></select>
+            <span ng-show="frm.semester.$touched&&frm.semester.$error.required"></span>
+        </label>
+    
+       <label class="label-group">subject:
+            <select ng-model="addbooks.Subjectid._id" name="subject" ng-options="subject._id as subject.subjectcode for subject in subjects"required></select>
+           <span ng-show="frm.subject.$touched&&frm.subject.$error.required"></span>
 
         </label>
-
-        <label class="label-group">subject:
-            <select ng-model="addbooks.Subjectid._id" name="subject" placeholder="category"
-                    ng-options="subject._id as subject.subjectcode for subject in subjects" required></select>
-            <span ng-show="(frm.subject.$touched||frm.$submitted) && frm.subject.$error.required">Subject is required!!</span>
-
-        </label>
-        <label for="picture">Upload pdf</label>
-        <div class="text-center">
-            <button type="button" class="btn btn-default" ng-click="upload1()">
-                Upload <span class="caret"></span>
-            </button>
-            <div style="margin-top:10px;">
-                <!-- Show the thumbnail only when the picture is uploaded -->
-                <a href="{{addbooks.pdf.url}}" class="thumbnail" ng-if="addbooks.pdf">
-                    <!-- the picture is rendered with width: 500 and sharpened -->
-                    <img ng-src="{{addbooks.pdf.url | fpConvert: {filter:'sharpen'} }}">
-                </a>
-
-            </div>
-        </div>
-        <span style="color: red;font-weight: 700" ng-show="frm.$submitted && !addbooks.pdf">pdf is required!!</span>
-
     </fieldset>
 
-    <!--<div class="form-group">-->
-        <!--<label for="picture">Upload pdf</label>-->
-        <!--<div class="text-center">-->
-            <!--<button type="button" class="btn btn-default" ng-click="upload1()">-->
-                <!--Upload <span class="caret"></span>-->
-            <!--</button>-->
-            <!--<div style="margin-top:10px;">-->
-                <!--&lt;!&ndash; Show the thumbnail only when the picture is uploaded &ndash;&gt;-->
-                <!--<a href="{{addbooks.pdf.url}}" class="thumbnail" ng-if="addbooks.pdf">-->
-                    <!--&lt;!&ndash; the picture is rendered with width: 500 and sharpened &ndash;&gt;-->
-                    <!--<img ng-src="{{addbooks.pdf.url | fpConvert: {filter:'sharpen'} }}">-->
-                <!--</a>-->
+    <div class="form-group">
+                    <label for="picture">Upload pdf</label>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-default" ng-click="upload1()">
+                            Upload <span class="caret"></span >
+                        </button>
+                        <div style="margin-top:10px;">
+                            <!-- Show the thumbnail only when the picture is uploaded -->
+                            <a href="{{addbooks.pdf.url}}" class="thumbnail" ng-if="addbooks.pdf">
+                            <!-- the picture is rendered with width: 500 and sharpened -->
+                            <img ng-src="{{addbooks.pdf.url | fpConvert: {filter:'sharpen'} }}">
+                            </a>
+                        </div>
 
-            <!--</div>-->
-        <!--</div>-->
-        <!--<span ng-show="frm.$submitted && !addbooks.pdf">pdf is required!!</span>-->
+                    </div>
+                </div>
 
-    <!--</div>-->
-<!--{{frm.$submitted}}-->
-    <button type="submit" class="submitbtn"  ng-if="!paramsbook">Save</button>
-    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="updateBooks()"
-            ng-if="paramsbook">Update
-    </button>
+    
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addBooks()" ng-if ="!paramsbook">Save</button >
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="updateBooks()"ng-if="paramsbook">Update</button >
 </form>
 
 </body>

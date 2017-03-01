@@ -53,11 +53,13 @@
         </label>
 
         <label class="label-group">faculty:
-            <select ng-model="addsubject.Faculties" placeholder="faculty" ng-options="faculty for faculty  in faculties"></select>
+            <select ng-model="addsubject.Faculties" name="faculty" ng-options="faculty for faculty  in faculties" required></select>
+            <span ng-show="frm.faculty.$touched&&frm.faculty.$error.required"></span>
         </label>
 
         <label class="label-group">semester:
-            <select ng-model="addsubject.Semester" placeholder="semester" ng-options="semester for semester in semesters"></select>
+            <select ng-model="addsubject.Semester" name="semester" placeholder="semester" ng-options="semester for semester in semesters"></select>
+            <span ng-show="frm.semester.$touched&&frm.semester.$error.required"></span>
         </label>
         
 
@@ -99,7 +101,7 @@
 
 
     </fieldset>
-    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addSubject()">Save</buttonclass>
+    <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addSubject()">Save</button >
 </form>
 
 </body>

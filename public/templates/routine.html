@@ -32,15 +32,18 @@
 
 
         <label class="label-group">faculty:
-            <select  ng-model="addbooks.Faculties" ng-options="faculty for faculty  in faculties"></select>
+            <select  ng-model="addbooks.Faculties" ng-options="faculty for faculty  in faculties" required></select>
+            <span ng-show="frm.faculty.$touched&&frm.faculty.$error.required"></span>
         </label>
 
-        <label class="label-group">semester:{{addbooks.Semester}}
-            <select ng-model="addbooks.Semester"  ng-options="semester for semester in semesters"></select>
+        <label class="label-group">semester:
+            <select ng-model="addbooks.Semester"  ng-options="semester for semester in semesters" required></select>
+            <span ng-show="frm.semester.$touched&&frm.semester.$error.required"></span>
         </label>
 
         <label class="label-group">Day:
-            <select ng-model="addroutine.day" ng-options="day for day in days"></select>
+            <select ng-model="addroutine.day" name="Day" ng-options="day for day in days" required></select>
+            <span ng-show="frm.Day.$touched&&frm.Day.$error.required"></span>
         </label>
 
         <label class="label-group">starting time:
@@ -53,9 +56,10 @@
             <input type="time" ng-model="addroutine.endingTime">
         </label>
 
-        Subject
-        <label class="label-group">
-            <select ng-model="addroutine.Subjectid._id" ng-options="subject._id as subject.subjectcode for subject in subjects"></select>
+
+        <label class="label-group"> Subject:
+            <select ng-model="addroutine.Subjectid._id" ng-options="subject._id as subject.subjectcode for subject in subjects" required></select>
+            <span ng-show="frm.subject.$touched&&frm.subject.$error.required"></span>
         </label>
 
         <label class="label-group">Teacher

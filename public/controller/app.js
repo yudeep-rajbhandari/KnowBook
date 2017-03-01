@@ -64,7 +64,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
             templateUrl: 'templates/pastquestions.html',
             controller: "booksController",
             data: {
-                roles: []
+                roles: ['user']
             }
         })
         .state('home.addbook', {

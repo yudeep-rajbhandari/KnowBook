@@ -13,7 +13,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
 
 
     filepickerProvider.setKey('AxiX0R0guSJ6hMqeH2yNdz');
-    $urlRouterProvider.otherwise('/home/login');
+    $urlRouterProvider.otherwise('/homepage');
 
     $stateProvider
 
@@ -102,7 +102,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
             templateUrl: 'templates/view.html',
             controller: "booksController",
             data: {
-                roles: ['user']
+                roles: []
             }
         })
 
@@ -153,6 +153,15 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
                 roles: ['user']
             }
         })
+        .state('homepage', {
+
+            url: '/homepage',
+            templateUrl: 'templates/homepage.html',
+            controller: "booksController",
+            data: {
+                roles: []
+            }
+        })
 
 
 
@@ -199,7 +208,7 @@ app.controller('signUpController', ['$scope', '$http', 'toaster', '$state', 'pri
             console.log('<<<<<<<<<');
             principal.authenticate(null);
             $rootScope.userData = null;
-            $state.go("home.login");
+            $state.go("homepage");
 
 
         }

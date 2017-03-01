@@ -303,6 +303,27 @@ a#start:hover{
     text-decoration-style: bold;
     /*background-color: #477EE6;*/
 }
+#start1{
+    display: block;
+    text-align: center;
+    width: 150px;
+    margin: 0px auto;
+    padding: 20px;
+    color: white;
+
+    text-transform: uppercase;
+    font-family: Arial;
+    border: 1px solid #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    opacity: 1;
+}
+a#start1:hover{
+    opacity: 1;
+    border: 2px solid #fff;
+    text-decoration-style: bold;
+    /*background-color: #477EE6;*/
+}
 
 .new{
     margin: 50px 100px 50px;

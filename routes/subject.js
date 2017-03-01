@@ -73,7 +73,15 @@ router.post('/savedata', function (req, res, next) {
 })
 router.get('/getsubject', function (req, res, next) {
     console.log(req.query);
-    console.log("<<<<<<");
+    //{ Faculty: 'CS', Semester: '2' }
+    if(req.query.Faculty=='CS'&& (req.query.Semester=='1'||req.query.Semester=='2'||req.query.Semester=='3'||req.query.Semester=='4'||req.query.Semester=='8')){
+        req.query.Faculty='CE';
+    }
+
+
+
+    console.log(req.query.Faculty);
+
     model.find({Faculties: req.query.Faculty, Semester: req.query.Semester}, function (err, data) {
 
         if (err) {
@@ -81,7 +89,7 @@ router.get('/getsubject', function (req, res, next) {
         }
         if (data) {
             res.status(200).json({success: true, data: data})
-            console.log(data);
+            //console.log(data);
         }
         else {
             next(err);

@@ -1,28 +1,6 @@
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Fira+Sans:300' rel='stylesheet' type='text/css'>
-    <style>
-        input.ng-invalid.ng-dirty.ng-touched.ng-error{
-            border:1px solid red;
-            color: #F97C7C;
-        }
-        button.ng-disabled{
-            background-color:#9CBF9C ;
-        }
-        label.label-group>span{
-            color: red;
-        }
-    </style>
-</head>
 <body>
+<div class="form-background">
 <form  name="frm ">
 
 
@@ -121,5 +99,5 @@
     <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addBooks()" ng-if ="!paramsbook">Save</button >
     <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="updateBooks()"ng-if="paramsbook">Update</button >
 </form>
-
+</div>
 </body>

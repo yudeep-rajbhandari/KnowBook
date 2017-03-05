@@ -8,12 +8,110 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="newpage.css">
+    <style>
+
+        .navbar{
+            background-image: none;
+
+        }
+        .navbar-default {
+            background-color: #009688;
+            border-color: #0b7c71;
+        }
+        .navbar-default .navbar-brand {
+            color: #ffffff;
+        }
+        .navbar-default .navbar-brand:hover,
+        .navbar-default .navbar-brand:focus {
+            color: #3fc5b8;
+        }
+        .navbar-default .navbar-text {
+            color: #ffffff;
+        }
+        .navbar-default .navbar-nav > li > a {
+            color: #ffffff;
+        }
+        .navbar-default .navbar-nav > li > a:hover,
+        .navbar-default .navbar-nav > li > a:focus {
+            color: #3fc5b8;
+        }
+        .navbar-default .navbar-nav > li > .dropdown-menu {
+            background-color: #009688;
+        }
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+            color: #ffffff;
+        }
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+            color: #3fc5b8;
+            background-color: #0b7c71;
+        }
+        .navbar-default .navbar-nav > li > .dropdown-menu > li > .divider {
+            background-color: #0b7c71;
+        }
+        .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+        .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+        .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+            color: #3fc5b8;
+            background-color: #0b7c71;
+        }
+        .navbar-default .navbar-nav > .active > a,
+        .navbar-default .navbar-nav > .active > a:hover,
+        .navbar-default .navbar-nav > .active > a:focus {
+            color: #3fc5b8;
+            background-color: #0b7c71;
+        }
+        .navbar-default .navbar-nav > .open > a,
+        .navbar-default .navbar-nav > .open > a:hover,
+        .navbar-default .navbar-nav > .open > a:focus {
+            color: #3fc5b8;
+            background-color: #0b7c71;
+        }
+        .navbar-default .navbar-toggle {
+            border-color: #0b7c71;
+        }
+        .navbar-default .navbar-toggle:hover,
+        .navbar-default .navbar-toggle:focus {
+            background-color: #0b7c71;
+        }
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: #ffffff;
+        }
+        .navbar-default .navbar-collapse,
+        .navbar-default .navbar-form {
+            border-color: #ffffff;
+        }
+        .navbar-default .navbar-link {
+            color: #ffffff;
+        }
+        .navbar-default .navbar-link:hover {
+            color: #3fc5b8;
+        }
+
+        @media (max-width: 767px) {
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+                color: #ffffff;
+            }
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+            .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+                color: #3fc5b8;
+            }
+            .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+            .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+            .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+                color: #3fc5b8;
+                background-color: #0b7c71;
+            }
+        }
+
+
+    </style>
 
 </head>
 
 
 <div >
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" >
@@ -44,13 +142,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li ui-sref-active="active" ng-hide="userData"><a ui-sref="home.login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
                 <div ng-if="userData"> <span style="color: whitesmoke">{{userData.username}} ({{userData.roles}})</span></div>
-                <button ng-click="logout()" ng-if="userData"><span class="glyphicon glyphicon-log-in"></span> Logout</button>
+                <button ng-click="logout()" class="btn btn-sm" ng-if="userData"><span class="glyphicon glyphicon-log-in"></span> Logout</button>
 
             </ul>
         </div>
     </div>
 
 </nav>
-<div ui-view></div>
+    <div ui-view></div>
 </div>
 </html>

@@ -4,48 +4,65 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+
+
 <body>
-<div class="body1">
-<label class="label-group">faculty:
-            <select ng-model="addbooks.Faculties" placeholder="district" ng-options="faculty for faculty  in faculties"></select>
-        </label>
+<div class="backgroundview container-fluid">
+<div class="body1 ">
 
-        <label class="label-group">semester:
-            <select ng-model="addbooks.Semester" placeholder="category" ng-options="semester for semester in semesters"></select>
-        </label>
+    <label class="label-group">faculty:
+        <select class="form-control" ng-model="addbooks.Faculties" placeholder="district"
+                ng-options="faculty for faculty  in faculties">faculty</select>
+    </label>
 
-        <button ng-click="showroutine(addbooks.Faculties,addbooks.Semester)" ng-if= "addbooks.Faculties && addbooks.Semester">Routine</button>
+    <label class="label-group">semester:
+        <select class="form-control" ng-model="addbooks.Semester" placeholder="category"
+                ng-options="semester for semester in semesters"></select>
+    </label>
 
-        <div ng-repeat="subject in subjects">
+    <button class="btn btn-warning" ng-click="showroutine(addbooks.Faculties,addbooks.Semester)"
+            ng-if="addbooks.Faculties && addbooks.Semester">Routine
+    </button>
 
-<a ui-sref="home.booksdetails({subjectid:subject._id})"><h3>Subject Name:{{subject.SubjectName}}</h3></a>
-
-            <button ng-click="deletesubject(subject._id)">Delete subject</button>
-
-<br>
-Subject code:{{subject.subjectcode}}
-<br>
-Credit      :{{subject.Credit}}
-<br>
+    <div class="subject" ng-repeat="subject in subjects"  >
 
 
-<a href="{{subject.picture.url}}">Download syllabus</a><br>
-            <a ui-sref="home.viewnotes({subjectid1:subject._id})" > Notes</a><br>
+        <a ui-sref="home.booksdetails({subjectid:subject._id})">
+            <div class="placelist">
+                <h3>Subject Name: {{subject.SubjectName}}</h3>
 
 
-            <a ui-sref="home.viewquestion({subjectid2:subject._id})" > Past Questions</a>
-   
-     <!-- <img ng-src="{{subject.picture.url  }}" /> -->
- 
-<!--<div class="text-right"><a ng-href="/#/detail/{{subject._id}}" class="btn btn-danger" role="button">View</a> </div>
-      </div> -->
 
-<br>
+                <h5>Subject code:{{subject.subjectcode}}</h5>
 
-       
+                <h5>Credit :{{subject.Credit}} Credit Hours</h5>
+                <button class="btn btn-danger" ng-if="userData" ng-click="deletesubject(subject._id)">Delete subject</button>
+            </div>
+        </a>
+
+
+
+
+        <div class="btn-group btn-group-justified" role="group" >
+            <div class="btn-group" role="group">
+
+                <a  href="{{subject.picture.url}}"><button type="button" class="btn btn-lg btn-primary">Download syllabus</button></a>
+            </div>
+            <div class="btn-group" role="group">
+
+                <a ui-sref="home.viewnotes({subjectid1:subject._id})"><button type="button" class="btn btn-lg btn-success"> Notes</button></a>
+            </div>
+            <div class="btn-group" role="group">
+
+                <a ui-sref="home.viewquestion({subjectid2:subject._id})"><button type="button" class="btn btn-lg btn-info"> Past Questions</button></a>
+            </div>
         </div>
+
+    </div>
 
 
 </div>
+</div>
+
 </body>
 </html>

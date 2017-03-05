@@ -1,18 +1,24 @@
+<div class="viewbackground">
 <div ng-repeat="question in questions">
+    <div class="notes">
+        <h3>{{question.Subjectid.SubjectName}}</h3>
+
+        <h4>Year:{{question.Year}}  Type:{{question.Types}}</h4><br>
+
+
+        <a href="{{question.pdf.url}}"><button class="btn btn-success">Download pdf</button></a>
+
+
+
+        <button class="btn btn-danger" ng-if="userData" ng-click="deletequestion(question._id)">Delete</button>
+        <br>
+        <br>
+
+    </div>
+</div>
+
+</div>
 
 
 
 
-
-    subject:{{question.Subjectid.SubjectName}}
-    <br>
-    Year:{{question.Year}}<br>
-    Type:{{question.Types}}<br>
-
-    <p><a href="{{question.pdf.url}}">Download pdf</a></p>
-
-
-
-    <button ng-click="deletequestion(question._id)">Delete</button>
-    <br>
-    <br>

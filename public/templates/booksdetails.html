@@ -1,31 +1,25 @@
 <div ng-repeat="seerequest in seeRequests">
 
-
-
-
     Faculties:{{seerequest.Subjectid.Faculties}}
-    <br>
-    semester:{{seerequest.Subjectid.Semester}}
-    <br>
-    subject:{{seerequest.Subjectid.SubjectName}}
-    <br>
-    bookname:{{seerequest.bookName}}<br>
-    booktype:{{seerequest.booktype}}<br>
-    writer:{{seerequest.writer}}<br>
-    publication:{{seerequest.publication}}<br>
-    price:{{seerequest.price}}<br>
-    availability:{{seerequest.availability}}<br>
-    rack number:{{seerequest.rackNumber}}<br>
-    <p><a href="{{seerequest.pdf.url}}">book pdf</a></p>
+
+    <h4>semester:{{seerequest.Subjectid.Semester}}</h4>
+    <h4>subject:{{seerequest.Subjectid.SubjectName}}</h4>
+    <h4>bookname:{{seerequest.bookName}}</h4>
+    <h4>booktype:{{seerequest.booktype}}</h4>
+    <h4>writer:{{seerequest.writer}}</h4>
+    <h4>publication:{{seerequest.publication}}</h4>
+    <h4>price:{{seerequest.price}}</h4>
+    <h4>availability:{{seerequest.availability}}</h4>
+    <h4>rack number:{{seerequest.rackNumber}}</h4>
+    <a href="{{seerequest.pdf.url}}"><button class="btn btn-primary">Book pdf</button></a>
+
     {{seerequest._id}}
     
-  <a ui-sref="home.addbook({bookid:seerequest._id})" > Edit</a>  
+    <a ui-sref="home.addbook({bookid:seerequest._id})" > <button class="btn btn-primary">Edit</button></a>
 
-<button ng-click="deleteit(seerequest._id)">Delete</button>
+    <button class="btn btn-danger" ng-click="deleteit(seerequest._id)">Delete</button>
 
     <br>
     <br>
     <br>
-
-
 </div>

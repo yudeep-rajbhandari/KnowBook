@@ -1,22 +1,26 @@
+<div class="form-background">
 
-
-
+<form name="frm">
+    <fieldset>
 <label class="label-group">faculty:
-    <select ng-model="addbooks.Faculties" placeholder="district" ng-options="faculty for faculty  in faculties"></select>
+    <select ng-model="addbooks.Faculties"  name="faculty" ng-options="faculty for faculty  in faculties" required></select>
+    <span ng-show="frm.faculty.$touched&&frm.faculty.$error.required"></span>
 </label>
 
 <label class="label-group">semester:
-    <select ng-model="addbooks.Semester" placeholder="category" ng-options="semester for semester in semesters"></select>
+    <select ng-model="addbooks.Semester" name="semester" ng-options="semester for semester in semesters" required></select>
+    <span ng-show="frm.semester.$touched&&frm.semester.$error.required"></span>
 </label>
 
 <label class="label-group">subject:
-    <select ng-model="addquestion.Subjectid._id" placeholder="category" ng-options="subject._id as subject.subjectcode for subject in subjects"></select>
+    <select ng-model="addquestion.Subjectid._id"  name="subject" ng-options="subject._id as subject.subjectcode for subject in subjects"></select>
+    <span ng-show="frm.subject.$touched&&frm.subject.$error.required"></span>
 </label>
 
 <label class="label-group">Year
-    <input type="text" name="What is this note about?" ng-model="addquestion.Year" required>
-    <span ng-show="frm.address.$touched && frm.address.$invalid">Topic is required!!</span>
-    <span ng-show="frm.address.$touched && frm.address.$error.required"></span>
+    <input type="text" name="year" ng-model="addquestion.Year" required>
+    <span ng-show="frm.year.$touched && frm.year.$invalid">Year is required!!</span>
+    <span ng-show="frm.year.$touched && frm.year.$error.required"></span>
 
 </label>
 
@@ -38,5 +42,6 @@
         </div>
     </div>
 </div>
-
+</fieldset>
 <button class="submitbtn" ng-disabled="frm.$invalid||frm.$untouched" ng-click="addQuestion()" >Save</button>
+</form></div>

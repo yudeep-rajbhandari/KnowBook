@@ -1,18 +1,27 @@
+<div class="viewbackground">
+
+    <div class="routine">
+
+
 <label class="label-group">Day:
-            <select ng-model="view" placeholder="semester" ng-options="routin.day for routin in routine | unique:'day'"></select>
+            <select class="form-control" ng-model="view" placeholder="semester" ng-options="routin.day for routin in routine | unique:'day'"></select>
         </label>
 
 
 <div ng-repeat="routin in routine|filter:view.day" ng-if="view.day">
 
-    {{routin.startingTime |date:'h:mma'}} -{{routin.endingTime|date:'h:mma'}} : {{routin.Subjectid.subjectcode}},{{routin.Subjectid.SubjectName}}<br>    Teacher: {{routin.Teacher}}
-
-    <button ng-click="deleteroutine(routin._id)">Delete</button>
-    <a ui-sref="home.routine({routineid:routin._id})" > Edit</a>
+    <h3><strong>{{routin.startingTime |date:'h:mma'}} - {{routin.endingTime|date:'h:mma'}} :</strong> {{routin.Subjectid.subjectcode}}</h3>
+    <h4>{{routin.Subjectid.SubjectName}}</h4>
+    Teacher: {{routin.Teacher}}
+    <br>
+    <button class= "btn btn-danger" ng-if="userData" ng-click="deleteroutine(routin._id)">Delete</button>
+    <a ui-sref="home.routine({routineid:routin._id})" ng-if="userData" ><button class="btn btn-success">Edit </button> </a>
 
     <br>
-    <br>
+    <hr  style=" height: 3px; color: #333;">
 
 
 
+</div>
+</div>
 </div>

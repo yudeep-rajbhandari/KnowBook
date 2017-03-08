@@ -112,7 +112,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
             templateUrl: 'templates/booksdetails.html',
             controller: "booksController",
             data: {
-                roles: ['user']
+                roles: []
             }
         })
 
@@ -131,7 +131,7 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
             templateUrl: 'templates/routineviewer.html',
             controller: "booksController",
             data: {
-                roles: ['user']
+                roles: []
             }
         })
 
@@ -157,6 +157,15 @@ app.config(["$stateProvider", "$urlRouterProvider", "$httpProvider", "filepicker
 
             url: '/homepage',
             templateUrl: 'templates/homepage.html',
+            controller: "booksController",
+            data: {
+                roles: []
+            }
+        })
+        .state('home.about', {
+
+            url: '/about',
+            templateUrl: 'templates/about.html',
             controller: "booksController",
             data: {
                 roles: []

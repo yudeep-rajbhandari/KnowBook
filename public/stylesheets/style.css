@@ -574,9 +574,7 @@ label.light {
 }
 
 
-.row{
-    background-color: #D2DADA;
-}
+
 
 .placelist{
     background: #cdcfff;
@@ -713,4 +711,38 @@ label.label-group>span{
 
 
     margin-top: -20px;
+}
+
+
+.verticalLine {
+    border-left: thick solid #ff0000;
+    height: 2px;
+}
+
+.routine{
+    background: #f0f8ff;
+    padding-bottom: 30px;
+    padding-top: 10px;
+    padding-left:30px;
+    padding-right: 20px;
+    margin-top: 10px;
+    min-height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    box-shadow:  8px 10px 20px #888888;
+}
+hr {
+    border: none;
+    height: 1px;
+    /* Set the hr color */
+    color: #888; /* old IE */
+    background-color: #888; /* Modern Browsers */
+}
+
+
+.about{
+    height: 100vh;
+    width: 1000px;
+    margin: auto;
 }

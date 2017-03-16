@@ -228,7 +228,7 @@ div.places{
 
 .background{
     /*background-color: #1B62E5;*/
-    background-image: url("/images/book.jpg") ;
+    background-image: url("/images/boook.jpg") ;
     background-attachment: scroll;
     height: 100%;
     height: 100vh;
@@ -239,13 +239,17 @@ div.places{
     background-size: cover;
     background-position: center;
     margin-top: 0px;
+
+
+}
+.background .intro {
+
 }
 
 .intro{
     margin-right: auto;
     margin-left: auto;
     padding-top: 150px;
-
     vertical-align: middle;
     white-space: normal;
 
@@ -271,9 +275,7 @@ div.places{
 
 
 }
-.intro>h1{
-    text-shadow:2px 2px #707070;
-}
+
 .intro > h3{
     display: block;
     text-align: center;

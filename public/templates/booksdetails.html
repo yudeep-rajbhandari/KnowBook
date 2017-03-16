@@ -15,7 +15,7 @@
 
 
     
-    <a ui-sref="home.addbook({bookid:seerequest._id})" > <button class="btn btn-primary">Edit</button></a>
+    <a ui-sref="home.addbook({bookid:seerequest._id})" ng-if="userData" > <button class="btn btn-primary">Edit</button></a>
 
     <button class="btn btn-danger" ng-if="userData" ng-click="deleteit(seerequest._id)">Delete</button>
 

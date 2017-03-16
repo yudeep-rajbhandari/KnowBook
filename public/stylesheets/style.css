@@ -242,9 +242,6 @@ div.places{
 
 
 }
-.background .intro {
-
-}
 
 .intro{
     margin-right: auto;
@@ -275,7 +272,9 @@ div.places{
 
 
 }
-
+.intro>h1{
+    text-shadow:2px 2px #707070;
+}
 .intro > h3{
     display: block;
     text-align: center;

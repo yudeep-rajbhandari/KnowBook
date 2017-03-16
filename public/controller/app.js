@@ -197,7 +197,7 @@ app.controller('signUpController', ['$scope', '$http', 'toaster', '$state', 'pri
                         $rootScope.userData = userData;
 
 
-                        $state.go('home.welcome');
+                        $state.go('home.view');
                     }
                     else {
 

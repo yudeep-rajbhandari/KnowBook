@@ -1,10 +1,7 @@
-/**
- * Created by linux on 5/28/16.
- */
+
 var mongoose=require('mongoose');
 module.exports=function(app){
-    app.mdb="mongodb://yudeep123:yudeep123@ds145118.mlab.com:45118/knowbooks";
-    //app.mdb="mongodb://localhost:27017/takeinfood";
+    app.mdb="mongodb+srv://yudeep123:yudeep123@knowbooks.1kkc5.mongodb.net/knowbooks?retryWrites=true&w=majority";
     mongoose.set('debug', true);
 
 
@@ -32,5 +29,11 @@ module.exports=function(app){
         console.log('MongoDB disconnected!');
         mongoose.connect(app.mdb, {server:{auto_reconnect:true}});
     });
-    mongoose.connect(app.mdb, {server:{auto_reconnect:true}});
+    mongoose.connect(app.mdb,{
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+        authSource:"admin",
+        ssl: true,
+        dbName: "hci"
+      });   
 };

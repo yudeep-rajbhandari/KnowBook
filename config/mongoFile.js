@@ -34,6 +34,6 @@ module.exports=function(app){
         useUnifiedTopology: true,
         authSource:"admin",
         ssl: true,
-        dbName: "hci"
+        dbName: "knowbooks"
       });   
 };
